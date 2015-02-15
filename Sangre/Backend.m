@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Backend.h"
+#import "Private.h"
 @import UIKit;
 
 @implementation BackendRow
@@ -96,7 +97,7 @@
         
         [service setShouldCacheResponseData:YES];
         [service setServiceShouldFollowNextLinks:YES];
-        [service setUserCredentialsWithUsername:@"bharatman" password:@""];
+        [service setUserCredentialsWithUsername:@"bharatman" password:PASSWORD];
     }
     
     return service;
