@@ -15,11 +15,16 @@
 -(NSString*) content;
 @end
 
+@protocol BackendDelegate
+-(void) eventsLoaded;
+-(void) bgValueAdded;
+@end
+
 @interface Backend : NSObject
+-(id) initWithDelegate:(id)delegate;
 -(NSInteger) count;
 -(BackendRow*) rowAt:(NSInteger)index;
--(void) setUpdateCallback:(NSObject*)obj withSelector:(SEL)finishedSelector;
--(void) load;
+-(void) loadEvents;
 -(void) addBgValue:(NSString*)bgValue;
 @end
 

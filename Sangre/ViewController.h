@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "Backend.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BackendDelegate>
 - (IBAction)uploadBg:(id)sender;
 @property (retain, nonatomic) IBOutlet UITextField *bgValue;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;

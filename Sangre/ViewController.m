@@ -16,24 +16,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    mBackend = [[Backend alloc] init];
-    [mBackend setUpdateCallback:self withSelector:@selector(updateUI)];
-    [mBackend load];
+    mBackend = [[Backend alloc] initWithDelegate:self];
+    [mBackend loadEvents];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateUI {
-    [[self tableView] reloadData];
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [mBackend count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,15 +49,25 @@
 }
 
 
-- (void)dealloc {
-    [_tableView release];
-    [_bgValue release];
-    [super dealloc];
+- (void) eventsLoaded {
+    [[self tableView] reloadData];
+}
+
+- (void) bgValueAdded {
+    [[self tableView] reloadData];
 }
 
 
 - (IBAction)uploadBg:(id)sender {
     [mBackend addBgValue:[[self bgValue] text]];
 }
+
+
+- (void)dealloc {
+    [_tableView release];
+    [_bgValue release];
+    [super dealloc];
+}
+
 
 @end

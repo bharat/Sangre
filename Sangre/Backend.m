@@ -37,16 +37,18 @@
 @implementation Backend {
     GDataFeedSpreadsheet* mFeed;
     SEL mFinishedSelector;
-    NSObject* mFinishedObject;
-}
-
-- (void) setUpdateCallback:(NSObject*)finishedObject withSelector:(SEL)finishedSelector {
-    mFinishedSelector = finishedSelector;
-    mFinishedObject = finishedObject;
+    id<BackendDelegate> mDelegate;
 }
 
 
-- (void) load {
+- (id) initWithDelegate:(id<BackendDelegate>)delegate {
+    self = [super init];
+    mDelegate = delegate;
+    return self;
+}
+
+
+- (void) loadEvents {
     GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
     NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/private/full"];
 
@@ -54,11 +56,6 @@
                     feedClass:[GDataFeedSpreadsheet class]
                      delegate:self
             didFinishSelector:@selector(feedTicket:finishedWithFeed:error:)];
-}
-
-
-- (void)updateUI {
-    [mFinishedObject performSelector:mFinishedSelector];
 }
 
 
@@ -74,7 +71,7 @@
                          cancelButtonTitle:@"cancel"
                          otherButtonTitles:@"ok", nil];
     }
-    [self updateUI];
+    [mDelegate eventsLoaded];
 }
 
 
@@ -158,7 +155,7 @@
                          cancelButtonTitle:@"cancel"
                          otherButtonTitles:@"ok", nil];
     }
-    [self load];
+    [mDelegate bgValueAdded];
 }
 
 @end
