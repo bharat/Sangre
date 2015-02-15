@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Backend.h"
+@import UIKit;
 
 @implementation BackendRow
 {
@@ -33,51 +34,61 @@
 @end
 
 @implementation Backend {
-    GDataFeedSpreadsheet *mSpreadsheetFeed;
-    NSError *mSpreadsheetFetchError;
+    GDataFeedSpreadsheet* mFeed;
     SEL mFinishedSelector;
     NSObject* mFinishedObject;
 }
 
-- (void) update:(NSObject*)finishedObject withSelector:(SEL)finishedSelector; {
-    self = [super init];
-    
-    NSURL *eventsFeedURL = [NSURL
-                            URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/public/full"];
-    
-    GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
-    [service fetchFeedWithURL:eventsFeedURL delegate:self didFinishSelector:@selector(feedTicket:finishedWithFeed:error:)];
+- (void) setUpdateCallback:(NSObject*)finishedObject withSelector:(SEL)finishedSelector {
     mFinishedSelector = finishedSelector;
     mFinishedObject = finishedObject;
 }
+
+
+- (void) load {
+    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/public/full"];
+
+    GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
+    [service fetchFeedWithURL:eventsFeedURL
+                    feedClass:[GDataFeedSpreadsheet class]
+                     delegate:self
+            didFinishSelector:@selector(feedTicket:finishedWithFeed:error:)];
+}
+
+
+- (void)updateUI {
+    [mFinishedObject performSelector:mFinishedSelector];
+}
+
 
 - (void)feedTicket:(GDataServiceTicket *)ticket
   finishedWithFeed:(GDataFeedSpreadsheet *)feed
              error:(NSError *)error {
     
-    [self setSpreadsheetFeed:feed];
+    [self setFeed:feed];
     if (error) {
-        [self setSpreadsheetFetchError:error];
+        [[UIAlertView alloc] initWithTitle:@"feed error"
+                                   message:[error debugDescription]
+                                  delegate:self
+                         cancelButtonTitle:@"cancel"
+                         otherButtonTitles:@"ok", nil];
     }
-    [mFinishedObject performSelector:mFinishedSelector];
+    [self updateUI];
 }
 
-- (void)setSpreadsheetFeed:(GDataFeedSpreadsheet *)feed {
-    [mSpreadsheetFeed autorelease];
-    mSpreadsheetFeed = [feed retain];
+
+- (void)setFeed:(GDataFeedSpreadsheet *)feed {
+    [mFeed autorelease];
+    mFeed = [feed retain];
 }
 
-- (void)setSpreadsheetFetchError:(NSError *)error {
-    [mSpreadsheetFetchError release];
-    mSpreadsheetFetchError = [error retain];
-}
 
 - (GDataFeedSpreadsheet *)spreadsheetFeed {
-    return mSpreadsheetFeed;
+    return mFeed;
 }
 
-- (GDataServiceGoogleSpreadsheet *)spreadsheetService
-{
+
+- (GDataServiceGoogleSpreadsheet *)spreadsheetService {
     static GDataServiceGoogleSpreadsheet* service = nil;
     
     if (!service) {
@@ -85,25 +96,35 @@
         
         [service setShouldCacheResponseData:YES];
         [service setServiceShouldFollowNextLinks:YES];
+        [service setUserCredentialsWithUsername:@"bharatman" password:@""];
     }
     
     return service;
 }
 
-- (NSError *)spreadsheetFetchError {
-    return mSpreadsheetFetchError;
-}
 
 - (BackendRow *) rowAt:(NSInteger)index {
-    GDataEntrySpreadsheet* row = [[mSpreadsheetFeed entries] objectAtIndex:index];
+    GDataEntrySpreadsheet* row = [[mFeed entries] objectAtIndex:index];
     return [[BackendRow alloc] initWithTitle:[[row title] stringValue] andContent:[[row content] stringValue]];
 }
 
+
 - (NSInteger) count {
-    if (mSpreadsheetFeed) {
-        return [[mSpreadsheetFeed entries] count];
+    if (mFeed) {
+        return [[mFeed entries] count];
     }
     return 0;
+}
+
+-(void) addBgValue:(NSString*)bgValue {
+    GDataEntrySpreadsheet* entry = [[GDataEntrySpreadsheet alloc] init];
+    [entry setTitleWithString:@"1/1/2015 13:00"];
+    [entry setContentWithString:[NSString stringWithFormat:@"bg, %@", bgValue]];
+
+    [[self spreadsheetService] fetchEntryByInsertingEntry:entry
+                                               forFeedURL:[[mFeed postLink] URL]
+                                                 delegate:self
+                                        didFinishSelector:@selector(feedTicket:finishedWithFeed:error:)];
 }
 
 @end

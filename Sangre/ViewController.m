@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [[Backend alloc] init];
-    [mBackend update:self withSelector:@selector(updateUI)];
+    [mBackend setUpdateCallback:self withSelector:@selector(updateUI)];
+    [mBackend load];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,8 +51,16 @@
     return cell;
 }
 
+
 - (void)dealloc {
     [_tableView release];
+    [_bgValue release];
     [super dealloc];
 }
+
+
+- (IBAction)uploadBg:(id)sender {
+    [mBackend addBgValue:[[self bgValue] text]];
+}
+
 @end

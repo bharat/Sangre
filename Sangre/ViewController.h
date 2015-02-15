@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+- (IBAction)uploadBg:(id)sender;
+@property (retain, nonatomic) IBOutlet UITextField *bgValue;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @end
 

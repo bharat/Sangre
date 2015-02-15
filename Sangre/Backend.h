@@ -18,7 +18,9 @@
 @interface Backend : NSObject
 -(NSInteger) count;
 -(BackendRow*) rowAt:(NSInteger)index;
--(void) update:(NSObject*)obj withSelector:(SEL)finishedSelector;
+-(void) setUpdateCallback:(NSObject*)obj withSelector:(SEL)finishedSelector;
+-(void) load;
+-(void) addBgValue:(NSString*)bgValue;
 @end
 
 #endif
