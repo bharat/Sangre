@@ -11,7 +11,10 @@
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BackendDelegate>
 - (IBAction)uploadBg:(id)sender;
+- (IBAction)cancel:(id)sender;
 @property (retain, nonatomic) IBOutlet UITextField *bgValue;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *uploadSpinner;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *downloadSpinner;
 @end
 

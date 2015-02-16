@@ -14,7 +14,6 @@
 		C98B06F61A8E66F60034097F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F41A8E66F60034097F /* Main.storyboard */; };
 		C98B06F81A8E66F60034097F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F71A8E66F60034097F /* Images.xcassets */; };
 		C98B06FB1A8E66F60034097F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F91A8E66F60034097F /* LaunchScreen.xib */; };
-		C98B07071A8E66F60034097F /* SangreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B07061A8E66F60034097F /* SangreTests.m */; };
 		C98B0A081A8E670F0034097F /* GDataACLKeyedRole.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B07141A8E670D0034097F /* GDataACLKeyedRole.m */; };
 		C98B0A091A8E670F0034097F /* GDataACLRole.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B07161A8E670D0034097F /* GDataACLRole.m */; };
 		C98B0A0A1A8E670F0034097F /* GDataACLScope.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B07181A8E670D0034097F /* GDataACLScope.m */; };
@@ -290,7 +289,6 @@
 		C98B0B181A8E670F0034097F /* GTMHTTPUploadFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B095D1A8E670E0034097F /* GTMHTTPUploadFetcher.m */; };
 		C98B0B191A8E670F0034097F /* GTMMIMEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B095F1A8E670E0034097F /* GTMMIMEDocument.m */; };
 		C98B0B1A1A8E670F0034097F /* GTMReadMonitorInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B09611A8E670E0034097F /* GTMReadMonitorInputStream.m */; };
-		C98B0B1B1A8E670F0034097F /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = C98B09621A8E670E0034097F /* ReleaseNotes.txt */; };
 		C98B0B271A8E670F0034097F /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09721A8E670E0034097F /* UnitTests-Info.plist */; };
 		C98B0B281A8E670F0034097F /* GDataAtomCategoryGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B09751A8E670E0034097F /* GDataAtomCategoryGroup.m */; };
 		C98B0B291A8E670F0034097F /* GDataAtomCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B09771A8E670E0034097F /* GDataAtomCollection.m */; };
@@ -319,7 +317,6 @@
 		C98B0B401A8E670F0034097F /* GTMOAuth2Framework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09AF1A8E670F0034097F /* GTMOAuth2Framework-Info.plist */; };
 		C98B0B411A8E670F0034097F /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B09B01A8E670F0034097F /* GTMOAuth2Window.xib */; };
 		C98B0B421A8E670F0034097F /* GTMOAuth2WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B09B21A8E670F0034097F /* GTMOAuth2WindowController.m */; };
-		C98B0B431A8E670F0034097F /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = C98B09B31A8E670F0034097F /* ReleaseNotes.txt */; };
 		C98B0B441A8E670F0034097F /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B09B61A8E670F0034097F /* GTMOAuth2ViewControllerTouch.m */; };
 		C98B0B451A8E670F0034097F /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B09B71A8E670F0034097F /* GTMOAuth2ViewTouch.xib */; };
 		C98B0B471A8E670F0034097F /* DevelopmentTestApplication-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09BA1A8E670F0034097F /* DevelopmentTestApplication-Info.plist */; };
@@ -331,13 +328,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C98B07011A8E66F60034097F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C98B06DC1A8E66F60034097F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C98B06E31A8E66F60034097F;
-			remoteInfo = Sangre;
-		};
 		C98B0B8F1A8E670F0034097F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C98B09401A8E670E0034097F /* GData.xcodeproj */;
@@ -416,7 +406,6 @@
 		C98B06F51A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C98B06F71A8E66F60034097F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C98B06FA1A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C98B07001A8E66F60034097F /* SangreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SangreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98B07051A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98B07061A8E66F60034097F /* SangreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SangreTests.m; sourceTree = "<group>"; };
 		C98B07121A8E670D0034097F /* GDataACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACL.h; sourceTree = "<group>"; };
@@ -1069,13 +1058,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C98B06FD1A8E66F60034097F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1093,7 +1075,6 @@
 			isa = PBXGroup;
 			children = (
 				C98B06E41A8E66F60034097F /* Sangre.app */,
-				C98B07001A8E66F60034097F /* SangreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2063,24 +2044,6 @@
 			productReference = C98B06E41A8E66F60034097F /* Sangre.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C98B06FF1A8E66F60034097F /* SangreTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C98B070D1A8E66F60034097F /* Build configuration list for PBXNativeTarget "SangreTests" */;
-			buildPhases = (
-				C98B06FC1A8E66F60034097F /* Sources */,
-				C98B06FD1A8E66F60034097F /* Frameworks */,
-				C98B06FE1A8E66F60034097F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C98B07021A8E66F60034097F /* PBXTargetDependency */,
-			);
-			name = SangreTests;
-			productName = SangreTests;
-			productReference = C98B07001A8E66F60034097F /* SangreTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2093,10 +2056,6 @@
 					C98B06E31A8E66F60034097F = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = R6DR6B5C8B;
-					};
-					C98B06FF1A8E66F60034097F = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = C98B06E31A8E66F60034097F;
 					};
 				};
 			};
@@ -2129,7 +2088,6 @@
 			projectRoot = "";
 			targets = (
 				C98B06E31A8E66F60034097F /* Sangre */,
-				C98B06FF1A8E66F60034097F /* SangreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2206,11 +2164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C98B0B451A8E670F0034097F /* GTMOAuth2ViewTouch.xib in Resources */,
-				C98B0B1B1A8E670F0034097F /* ReleaseNotes.txt in Resources */,
 				C98B0B491A8E670F0034097F /* GDataFramework-Info.plist in Resources */,
 				C98B0B481A8E670F0034097F /* InfoPlist.strings in Resources */,
 				C98B06F61A8E66F60034097F /* Main.storyboard in Resources */,
-				C98B0B431A8E670F0034097F /* ReleaseNotes.txt in Resources */,
 				C98B0B4A1A8E670F0034097F /* GDataUnitTests-Info.plist in Resources */,
 				C98B06FB1A8E66F60034097F /* LaunchScreen.xib in Resources */,
 				C98B0B271A8E670F0034097F /* UnitTests-Info.plist in Resources */,
@@ -2218,13 +2174,6 @@
 				C98B06F81A8E66F60034097F /* Images.xcassets in Resources */,
 				C98B0B411A8E670F0034097F /* GTMOAuth2Window.xib in Resources */,
 				C98B0B471A8E670F0034097F /* DevelopmentTestApplication-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C98B06FE1A8E66F60034097F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2545,23 +2494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C98B06FC1A8E66F60034097F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C98B07071A8E66F60034097F /* SangreTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C98B07021A8E66F60034097F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C98B06E31A8E66F60034097F /* Sangre */;
-			targetProxy = C98B07011A8E66F60034097F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C98B06F41A8E66F60034097F /* Main.storyboard */ = {
@@ -2717,40 +2650,6 @@
 			};
 			name = Release;
 		};
-		C98B070E1A8E66F60034097F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SangreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sangre.app/Sangre";
-			};
-			name = Debug;
-		};
-		C98B070F1A8E66F60034097F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SangreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sangre.app/Sangre";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2768,15 +2667,6 @@
 			buildConfigurations = (
 				C98B070B1A8E66F60034097F /* Debug */,
 				C98B070C1A8E66F60034097F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C98B070D1A8E66F60034097F /* Build configuration list for PBXNativeTarget "SangreTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C98B070E1A8E66F60034097F /* Debug */,
-				C98B070F1A8E66F60034097F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

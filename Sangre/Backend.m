@@ -92,7 +92,7 @@
     if (!service) {
         service = [[GDataServiceGoogleSpreadsheet alloc] init];
         
-        [service setShouldCacheResponseData:YES];
+        [service setShouldCacheResponseData:NO];
         [service setServiceShouldFollowNextLinks:YES];
         [service setUserCredentialsWithUsername:@"bharatman" password:PASSWORD];
     }

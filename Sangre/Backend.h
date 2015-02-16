@@ -8,7 +8,7 @@
 
 #ifndef Sangre_Backend_h
 #define Sangre_Backend_h
-#import "GData.h"
+#import "GDataSpreadsheet.h"
 
 @interface BackendRow: NSObject
 -(NSString*) title;

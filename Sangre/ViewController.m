@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [[Backend alloc] initWithDelegate:self];
-    [mBackend loadEvents];
+    [self loadEvents];
 }
 
 
@@ -49,23 +49,45 @@
 }
 
 
-- (void) eventsLoaded {
-    [[self tableView] reloadData];
+- (void) loadEvents {
+    [[self downloadSpinner] startAnimating];
+    [mBackend loadEvents];
 }
 
-- (void) bgValueAdded {
+
+- (void) eventsLoaded {
+    [[self downloadSpinner] stopAnimating];
     [[self tableView] reloadData];
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow:[mBackend count]-1 inSection:0];
+    [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+}
+
+
+- (void) bgValueAdded {
+    [[self uploadSpinner] stopAnimating];
+    [[self tabBarController] setSelectedIndex:0];
+    [self loadEvents];
 }
 
 
 - (IBAction)uploadBg:(id)sender {
+    [self.view endEditing:YES];
+    [[self uploadSpinner] startAnimating];
     [mBackend addBgValue:[[self bgValue] text]];
+}
+
+
+- (IBAction)cancel:(id)sender {
+    [self.view endEditing:YES];
+    [[self tabBarController] setSelectedIndex:0];    
 }
 
 
 - (void)dealloc {
     [_tableView release];
     [_bgValue release];
+    [_uploadSpinner release];
+    [_downloadSpinner release];
     [super dealloc];
 }
 
