@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #include "Backend.h"
 
-@interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @end
 

@@ -15,12 +15,24 @@
     UIActivityIndicatorView* mActivityIndicator;
 }
 
+#pragma mark UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [Backend singleton];
 }
 
+#pragma mark NSObject
+
+- (void)dealloc {
+    [_bgValue release];
+    [super dealloc];
+}
+
+#pragma mark DataEntryViewController
+
 - (IBAction)addBgValue:(id)sender {
+    [self startBeingBusy];
     [self.view endEditing:YES];
     [mBackend addBgValue:[[self bgValue] text]
                  andThen:^(BOOL success){
@@ -30,13 +42,22 @@
 }
 
 - (void) bgValueAdded {
-    [[self tabBarController] setSelectedIndex:0];
+    [self stopBeingBusy];
+    [self switchToHistoryTab];
 }
 
 
 - (IBAction)cancel:(id)sender {
     [self.view endEditing:YES];
-    [[self tabBarController] setSelectedIndex:0];
+    [self switchToHistoryTab];
+}
+
+
+- (void) switchToHistoryTab {
+    [self.tabBarController setSelectedIndex:0];
+    [self.tabBarController.delegate tabBarController:self.tabBarController
+                             didSelectViewController:[self.tabBarController.viewControllers
+                                                      objectAtIndex:0]];
 }
 
 
@@ -54,11 +75,5 @@
 - (void) stopBeingBusy {
     [mActivityOverlay removeFromSuperview];
     [mActivityOverlay dealloc];
-}
-
-
-- (void)dealloc {
-    [_bgValue release];
-    [super dealloc];
 }
 @end

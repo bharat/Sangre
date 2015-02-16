@@ -15,8 +15,11 @@
     UIActivityIndicatorView* mActivityIndicator;
 }
 
+#pragma mark UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tabBarController setDelegate:self];
     mBackend = [Backend singleton];
     [self loadEvents];
 }
@@ -27,11 +30,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [mBackend count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
@@ -48,6 +51,26 @@
     return cell;
 }
 
+#pragma mark UITabBarControllerDelegate
+
+- (void)tabBarController:(UITabBarController *)tabBarController
+    didSelectViewController:(UIViewController *) viewController {
+
+    if(tabBarController.selectedIndex == 0) {
+        HistoryViewController* historyViewController = (HistoryViewController*)viewController;
+        [historyViewController loadEvents];
+    }
+}
+
+
+#pragma mark NSObject
+
+- (void)dealloc {
+    [_tableView release];
+    [super dealloc];
+}
+
+#pragma mark HistoryViewController
 
 - (void) loadEvents {
     [self startBeingBusy];
@@ -56,14 +79,12 @@
     }];
 }
 
-
 - (void) eventsLoaded {
     [[self tableView] reloadData];
     NSIndexPath* ipath = [NSIndexPath indexPathForRow:[mBackend count]-1 inSection:0];
     [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     [self stopBeingBusy];
 }
-
 
 - (void) startBeingBusy {
     mActivityOverlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -75,15 +96,8 @@
     [self.view addSubview:mActivityOverlay];
 }
 
-
 - (void) stopBeingBusy {
     [mActivityOverlay removeFromSuperview];
     [mActivityOverlay dealloc];
-}
-
-
-- (void)dealloc {
-    [_tableView release];
-    [super dealloc];
 }
 @end
