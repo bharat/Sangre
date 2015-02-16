@@ -11,8 +11,6 @@
 
 @implementation HistoryViewController {
     Backend* mBackend;
-    UIView* mActivityOverlay;
-    UIActivityIndicatorView* mActivityIndicator;
 }
 
 #pragma mark UIViewController
@@ -84,20 +82,5 @@
     NSIndexPath* ipath = [NSIndexPath indexPathForRow:[mBackend count]-1 inSection:0];
     [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     [self stopBeingBusy];
-}
-
-- (void) startBeingBusy {
-    mActivityOverlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    mActivityOverlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    mActivityIndicator.center = mActivityOverlay.center;
-    [mActivityOverlay addSubview:mActivityIndicator];
-    [mActivityIndicator startAnimating];
-    [self.view addSubview:mActivityOverlay];
-}
-
-- (void) stopBeingBusy {
-    [mActivityOverlay removeFromSuperview];
-    [mActivityOverlay dealloc];
 }
 @end

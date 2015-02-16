@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C95CA34A1A92A48700921699 /* BusyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3491A92A48700921699 /* BusyViewController.m */; };
 		C98B06EA1A8E66F60034097F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06E91A8E66F60034097F /* main.m */; };
 		C98B06ED1A8E66F60034097F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EC1A8E66F60034097F /* AppDelegate.m */; };
 		C98B06F01A8E66F60034097F /* Sangre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */; };
@@ -395,6 +396,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C95CA33D1A92A43D00921699 /* BusyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusyViewController.h; sourceTree = "<group>"; };
+		C95CA3491A92A48700921699 /* BusyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyViewController.m; sourceTree = "<group>"; };
 		C97784F71A901B7700CA829A /* Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		C98B06E41A8E66F60034097F /* Sangre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sangre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98B06E81A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1087,6 +1090,8 @@
 			children = (
 				C98B06EB1A8E66F60034097F /* AppDelegate.h */,
 				C98B06EC1A8E66F60034097F /* AppDelegate.m */,
+				C95CA33D1A92A43D00921699 /* BusyViewController.h */,
+				C95CA3491A92A48700921699 /* BusyViewController.m */,
 				C9A7CB6E1A928C190002DC54 /* DataEntryViewController.h */,
 				C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */,
 				C98B06F11A8E66F60034097F /* HistoryViewController.h */,
@@ -2248,6 +2253,7 @@
 				C98B0B351A8E670F0034097F /* GDataMediaKeywords.m in Sources */,
 				C98B0A561A8E670F0034097F /* GDataContactLanguage.m in Sources */,
 				C98B0B131A8E670F0034097F /* GTMHTTPFetcher.m in Sources */,
+				C95CA34A1A92A48700921699 /* BusyViewController.m in Sources */,
 				C98B0B891A8E670F0034097F /* GDataXMLNode.m in Sources */,
 				C98B0A7E1A8E670F0034097F /* GDataEntryFinancePosition.m in Sources */,
 				C98B0AFA1A8E670F0034097F /* GDataEntryLink.m in Sources */,
