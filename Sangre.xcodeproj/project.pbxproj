@@ -10,7 +10,7 @@
 		C98B06EA1A8E66F60034097F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06E91A8E66F60034097F /* main.m */; };
 		C98B06ED1A8E66F60034097F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EC1A8E66F60034097F /* AppDelegate.m */; };
 		C98B06F01A8E66F60034097F /* Sangre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */; };
-		C98B06F31A8E66F60034097F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06F21A8E66F60034097F /* ViewController.m */; };
+		C98B06F31A8E66F60034097F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06F21A8E66F60034097F /* HistoryViewController.m */; };
 		C98B06F61A8E66F60034097F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F41A8E66F60034097F /* Main.storyboard */; };
 		C98B06F81A8E66F60034097F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F71A8E66F60034097F /* Images.xcassets */; };
 		C98B06FB1A8E66F60034097F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98B06F91A8E66F60034097F /* LaunchScreen.xib */; };
@@ -324,6 +324,7 @@
 		C98B0B491A8E670F0034097F /* GDataFramework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09BD1A8E670F0034097F /* GDataFramework-Info.plist */; };
 		C98B0B4A1A8E670F0034097F /* GDataUnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09BE1A8E670F0034097F /* GDataUnitTests-Info.plist */; };
 		C98B0B891A8E670F0034097F /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B0A071A8E670F0034097F /* GDataXMLNode.m */; };
+		C9A7CB741A928CD40002DC54 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */; };
 		C9D9D01F1A8EA92000439ACA /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D9D01E1A8EA92000439ACA /* Backend.m */; };
 /* End PBXBuildFile section */
 
@@ -401,8 +402,8 @@
 		C98B06EB1A8E66F60034097F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C98B06EC1A8E66F60034097F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C98B06EF1A8E66F60034097F /* Sangre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sangre.xcdatamodel; sourceTree = "<group>"; };
-		C98B06F11A8E66F60034097F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C98B06F21A8E66F60034097F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C98B06F11A8E66F60034097F /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		C98B06F21A8E66F60034097F /* HistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		C98B06F51A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C98B06F71A8E66F60034097F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C98B06FA1A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -1046,6 +1047,8 @@
 		C98B09BE1A8E670F0034097F /* GDataUnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GDataUnitTests-Info.plist"; sourceTree = "<group>"; };
 		C98B0A061A8E670F0034097F /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C98B0A071A8E670F0034097F /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		C9A7CB6E1A928C190002DC54 /* DataEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DataEntryViewController.h; path = ../DataEntryViewController.h; sourceTree = "<group>"; };
+		C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		C9D9D01E1A8EA92000439ACA /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		C9D9D02B1A8EA93200439ACA /* Backend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1084,8 +1087,10 @@
 			children = (
 				C98B06EB1A8E66F60034097F /* AppDelegate.h */,
 				C98B06EC1A8E66F60034097F /* AppDelegate.m */,
-				C98B06F11A8E66F60034097F /* ViewController.h */,
-				C98B06F21A8E66F60034097F /* ViewController.m */,
+				C9A7CB6E1A928C190002DC54 /* DataEntryViewController.h */,
+				C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */,
+				C98B06F11A8E66F60034097F /* HistoryViewController.h */,
+				C98B06F21A8E66F60034097F /* HistoryViewController.m */,
 				C98B06F41A8E66F60034097F /* Main.storyboard */,
 				C98B06F71A8E66F60034097F /* Images.xcassets */,
 				C98B06F91A8E66F60034097F /* LaunchScreen.xib */,
@@ -2239,6 +2244,7 @@
 				C98B0A331A8E670F0034097F /* GDataFeedVolume.m in Sources */,
 				C98B0A221A8E670F0034097F /* GDataFeedAnalyticsData.m in Sources */,
 				C98B0A831A8E670F0034097F /* GDataFinanceSymbol.m in Sources */,
+				C9A7CB741A928CD40002DC54 /* DataEntryViewController.m in Sources */,
 				C98B0B351A8E670F0034097F /* GDataMediaKeywords.m in Sources */,
 				C98B0A561A8E670F0034097F /* GDataContactLanguage.m in Sources */,
 				C98B0B131A8E670F0034097F /* GTMHTTPFetcher.m in Sources */,
@@ -2368,7 +2374,7 @@
 				C98B0A5F1A8E670F0034097F /* GDataEntryContactProfile.m in Sources */,
 				C98B0AE51A8E670F0034097F /* GDataServiceGoogleYouTube.m in Sources */,
 				C98B0ABD1A8E670F0034097F /* GDataFeedSiteKeyword.m in Sources */,
-				C98B06F31A8E66F60034097F /* ViewController.m in Sources */,
+				C98B06F31A8E66F60034097F /* HistoryViewController.m in Sources */,
 				C98B0A0B1A8E670F0034097F /* GDataEntryACL.m in Sources */,
 				C98B0A381A8E670F0034097F /* GDataCalendarSettingsProperty.m in Sources */,
 				C98B0A631A8E670F0034097F /* GDataGroupMembershipInfo.m in Sources */,

@@ -11,8 +11,7 @@
 #import "Private.h"
 @import UIKit;
 
-@implementation BackendRow
-{
+@implementation BackendRow {
     NSString* mTitle;
     NSString* mContent;
 }
@@ -31,71 +30,45 @@
 - (NSString*) title {
     return mTitle;
 }
-
 @end
+
 
 @implementation Backend {
     GDataFeedSpreadsheet* mFeed;
     SEL mFinishedSelector;
-    id<BackendDelegate> mDelegate;
 }
 
++ (id) singleton {
+    static Backend *singleton = nil;
+    static dispatch_once_t onceToken;
 
-- (id) initWithDelegate:(id<BackendDelegate>)delegate {
-    self = [super init];
-    mDelegate = delegate;
-    return self;
+    dispatch_once(&onceToken, ^{
+        singleton = [[self alloc] init];
+    });
+    return singleton;
 }
-
-
-- (void) loadEvents {
-    GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
-    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/private/full"];
-
-    [service fetchFeedWithURL:eventsFeedURL
-                    feedClass:[GDataFeedSpreadsheet class]
-                     delegate:self
-            didFinishSelector:@selector(feedTicket:finishedWithFeed:error:)];
-}
-
-
-- (void)feedTicket:(GDataServiceTicket *)ticket
-  finishedWithFeed:(GDataFeedSpreadsheet *)feed
-             error:(NSError *)error {
-    
-    [self setFeed:feed];
-    if (error) {
-        [[UIAlertView alloc] initWithTitle:@"feed error"
-                                   message:[error debugDescription]
-                                  delegate:self
-                         cancelButtonTitle:@"cancel"
-                         otherButtonTitles:@"ok", nil];
-    }
-    [mDelegate eventsLoaded];
-}
-
 
 - (void)setFeed:(GDataFeedSpreadsheet *)feed {
     [mFeed autorelease];
     mFeed = [feed retain];
 }
 
-
-- (GDataFeedSpreadsheet *)spreadsheetFeed {
+- (GDataFeedSpreadsheet *)feed {
     return mFeed;
 }
 
 
 - (GDataServiceGoogleSpreadsheet *)spreadsheetService {
     static GDataServiceGoogleSpreadsheet* service = nil;
-    
-    if (!service) {
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
         service = [[GDataServiceGoogleSpreadsheet alloc] init];
         
         [service setShouldCacheResponseData:NO];
         [service setServiceShouldFollowNextLinks:YES];
         [service setUserCredentialsWithUsername:@"bharatman" password:PASSWORD];
-    }
+    });
     
     return service;
 }
@@ -115,7 +88,28 @@
     return 0;
 }
 
--(void) addBgValue:(NSString*)bgValue {
+- (void) loadEvents:(void(^)(BOOL))callback {
+    GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
+    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/private/full"];
+    
+    [service fetchFeedWithURL:eventsFeedURL
+            completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
+                if (error) {
+                    [[UIAlertView alloc] initWithTitle:@"feed error"
+                                               message:[error debugDescription]
+                                              delegate:self
+                                     cancelButtonTitle:@"cancel"
+                                     otherButtonTitles:@"ok", nil];
+                    callback(YES);
+                } else {
+                    [self setFeed:(GDataFeedSpreadsheet*)feed];
+                    callback(YES);
+                }
+            }
+     ];
+}
+
+-(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback {
     NSDate* now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MM/dd/YYYY HH:MM:SS";
@@ -139,24 +133,22 @@
     NSArray* array = [NSArray arrayWithObjects:obj1, obj2, obj3, nil];
     [entry setCustomElements:array];
 
-    [[self spreadsheetService] fetchEntryByInsertingEntry:entry
-                                               forFeedURL:[[mFeed postLink] URL]
-                                                 delegate:self
-                                        didFinishSelector:@selector(entryTicket:finishedWithFeed:error:)];
+    GDataServiceGoogleSpreadsheet* svc = [self spreadsheetService];
+    [svc fetchEntryByInsertingEntry:entry
+                         forFeedURL:[[mFeed postLink] URL]
+                  completionHandler:^(GDataServiceTicket *ticket, GDataEntryBase *entry, NSError *error) {
+                      if (error) {
+                          [[UIAlertView alloc] initWithTitle:@"feed error"
+                                                     message:[error debugDescription]
+                                                    delegate:self
+                                           cancelButtonTitle:@"cancel"
+                                           otherButtonTitles:@"ok", nil];
+                          callback(NO);
+                      } else {
+                          callback(YES);
+                      }
+                  }
+     ];
 }
-
-- (void)entryTicket:(GDataServiceTicket *)ticket
-  finishedWithFeed:(GDataFeedSpreadsheet *)feed
-             error:(NSError *)error {
-    if (error) {
-        [[UIAlertView alloc] initWithTitle:@"feed error"
-                                   message:[error debugDescription]
-                                  delegate:self
-                         cancelButtonTitle:@"cancel"
-                         otherButtonTitles:@"ok", nil];
-    }
-    [mDelegate bgValueAdded];
-}
-
 @end
 

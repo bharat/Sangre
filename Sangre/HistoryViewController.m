@@ -6,17 +6,18 @@
 //  Copyright (c) 2015 Menalto. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HistoryViewController.h"
 #import "Backend.h"
 
-@implementation ViewController
-{
+@implementation HistoryViewController {
     Backend* mBackend;
+    UIView* mActivityOverlay;
+    UIActivityIndicatorView* mActivityIndicator;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    mBackend = [[Backend alloc] initWithDelegate:self];
+    mBackend = [Backend singleton];
     [self loadEvents];
 }
 
@@ -32,8 +33,7 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -50,46 +50,40 @@
 
 
 - (void) loadEvents {
-    [[self downloadSpinner] startAnimating];
-    [mBackend loadEvents];
+    [self startBeingBusy];
+    [mBackend loadEvents:^(BOOL success) {
+        [self eventsLoaded];
+    }];
 }
 
 
 - (void) eventsLoaded {
-    [[self downloadSpinner] stopAnimating];
     [[self tableView] reloadData];
     NSIndexPath* ipath = [NSIndexPath indexPathForRow:[mBackend count]-1 inSection:0];
     [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    [self stopBeingBusy];
 }
 
 
-- (void) bgValueAdded {
-    [[self uploadSpinner] stopAnimating];
-    [[self tabBarController] setSelectedIndex:0];
-    [self loadEvents];
+- (void) startBeingBusy {
+    mActivityOverlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    mActivityOverlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    mActivityIndicator.center = mActivityOverlay.center;
+    [mActivityOverlay addSubview:mActivityIndicator];
+    [mActivityIndicator startAnimating];
+    [self.view addSubview:mActivityOverlay];
 }
 
 
-- (IBAction)uploadBg:(id)sender {
-    [self.view endEditing:YES];
-    [[self uploadSpinner] startAnimating];
-    [mBackend addBgValue:[[self bgValue] text]];
-}
-
-
-- (IBAction)cancel:(id)sender {
-    [self.view endEditing:YES];
-    [[self tabBarController] setSelectedIndex:0];    
+- (void) stopBeingBusy {
+    [mActivityOverlay removeFromSuperview];
+    [mActivityOverlay dealloc];
 }
 
 
 - (void)dealloc {
     [_tableView release];
-    [_bgValue release];
-    [_uploadSpinner release];
-    [_downloadSpinner release];
     [super dealloc];
 }
-
-
 @end

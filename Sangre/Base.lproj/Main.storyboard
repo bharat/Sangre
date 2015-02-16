@@ -7,7 +7,7 @@
         <!--View History-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,10 +19,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-vK-NnA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="kTf-GU-lHd">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="1bk-kp-d5T"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="dKh-ZK-jqz"/>
@@ -43,7 +39,7 @@
         <!--Add Entry-->
         <scene sceneID="Ft5-ta-PSl">
             <objects>
-                <viewController id="fUH-hi-XS0" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="fUH-hi-XS0" customClass="DataEntryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i5L-gl-Evj"/>
                         <viewControllerLayoutGuide type="bottom" id="Kbf-mr-DX2"/>
@@ -58,7 +54,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="uploadBg:" destination="fUH-hi-XS0" eventType="touchUpInside" id="zdz-N4-tlR"/>
+                                    <action selector="addBgValue:" destination="fUH-hi-XS0" eventType="touchUpInside" id="QD0-Lx-ePx"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsX-g7-iJv">
@@ -66,9 +62,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-0a-2dS">
-                                <rect key="frame" x="564" y="523" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLa-fW-A5P">
                                 <rect key="frame" x="260" y="273" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
@@ -83,8 +76,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Add Entry" image="diabetes-40" id="B0a-Td-yBw"/>
                     <connections>
-                        <outlet property="bgValue" destination="gsX-g7-iJv" id="C8R-Ka-u8y"/>
-                        <outlet property="uploadSpinner" destination="bXl-0a-2dS" id="RBs-W0-Tkj"/>
+                        <outlet property="bgValue" destination="gsX-g7-iJv" id="q5I-C8-2vD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttx-bb-jNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
