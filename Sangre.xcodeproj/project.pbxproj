@@ -401,7 +401,6 @@
 		C95CA3491A92A48700921699 /* BusyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyViewController.m; sourceTree = "<group>"; };
 		C95CA3521A92BAC000921699 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		C95CA3541A92BAF500921699 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
-		C97784F71A901B7700CA829A /* Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		C98B06E41A8E66F60034097F /* Sangre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sangre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98B06E81A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98B06E91A8E66F60034097F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1108,7 +1107,6 @@
 				C9D9D01E1A8EA92000439ACA /* Backend.m */,
 				C9D9D02B1A8EA93200439ACA /* Backend.h */,
 				C98B06E71A8E66F60034097F /* Supporting Files */,
-				C97784F71A901B7700CA829A /* Private.h */,
 			);
 			path = Sangre;
 			sourceTree = "<group>";

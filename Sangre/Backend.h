@@ -18,9 +18,11 @@
 
 @interface Backend : NSObject
 +(id) singleton;
--(void)setAuthentication:(GTMOAuth2Authentication*)auth;
++(void)loadAuthenticationFromKeychain;
+
 -(UIViewController*)getAuthenticationViewController;
 -(BOOL)isAuthenticated;
+-(void)setAuthentication:(GTMOAuth2Authentication*)auth;
 
 -(NSInteger) count;
 -(BackendRow*) rowAt:(NSInteger)index;

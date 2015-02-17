@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Backend.h"
-#import "Private.h"
 @import UIKit;
 
 @implementation BackendRow {
@@ -38,28 +37,34 @@
     GTMOAuth2Authentication* mAuth;
 }
 
+NSString *kKeychainItemName = @"com.menalto.Sangre";
+NSString *kMyClientID = @"336095338870-fqh5c3k8ug6772lcms8rmo07b0kqieh5.apps.googleusercontent.com";
+NSString *kMyClientSecret = @"Pn2jFjL39S94ko0diFdb4z8_";
+NSString *scope = @"https://spreadsheets.google.com/feeds";
+
 + (id) singleton {
     static Backend *singleton = nil;
     static dispatch_once_t onceToken;
-
-    // Create only one singleton
     dispatch_once(&onceToken, ^{
         singleton = [[self alloc] init];
     });
     return singleton;
 }
 
++ (void) loadAuthenticationFromKeychain {
+    GTMOAuth2Authentication* auth;
+    auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+                                                                 clientID:kMyClientID
+                                                             clientSecret:kMyClientSecret];
+    [[Backend singleton] setAuthentication:auth];
+}
+
 - (BOOL) isAuthenticated {
-    return mAuth != nil;
+    return mAuth && [mAuth canAuthorize];
 }
 
 - (UIViewController*) getAuthenticationViewController {
     // Authenticate for spreadsheet feeds using OAuth
-    static NSString *const kKeychainItemName = @"com.menalto.Sangre";
-    NSString *kMyClientID =
-        @"336095338870-fqh5c3k8ug6772lcms8rmo07b0kqieh5.apps.googleusercontent.com";
-    NSString *kMyClientSecret = @"Pn2jFjL39S94ko0diFdb4z8_";
-    NSString *scope = @"https://spreadsheets.google.com/feeds";
 
     GTMOAuth2ViewControllerTouch* viewController = [GTMOAuth2ViewControllerTouch alloc];
     [viewController initWithScope:scope
@@ -82,7 +87,8 @@
 }
 
 - (void) setAuthentication:(GTMOAuth2Authentication *)auth {
-    mAuth = auth;
+    [mAuth autorelease];
+    mAuth = [auth retain];
 }
 
 - (void)setFeed:(GDataFeedSpreadsheet *)feed {

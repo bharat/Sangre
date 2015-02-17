@@ -12,11 +12,14 @@
 
 @implementation MainTabBarController
 
+- (void)awakeFromNib {
+    [Backend loadAuthenticationFromKeychain];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     Backend* backend = [Backend singleton];
-    
     if (![backend isAuthenticated]) {
         UIViewController* authenticationViewController = [backend getAuthenticationViewController];
         [[self navigationController] pushViewController:authenticationViewController
