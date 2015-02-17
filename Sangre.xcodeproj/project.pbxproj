@@ -412,8 +412,6 @@
 		C98B06F51A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C98B06F71A8E66F60034097F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C98B06FA1A8E66F60034097F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C98B07051A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C98B07061A8E66F60034097F /* SangreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SangreTests.m; sourceTree = "<group>"; };
 		C98B07121A8E670D0034097F /* GDataACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACL.h; sourceTree = "<group>"; };
 		C98B07131A8E670D0034097F /* GDataACLKeyedRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACLKeyedRole.h; sourceTree = "<group>"; };
 		C98B07141A8E670D0034097F /* GDataACLKeyedRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataACLKeyedRole.m; sourceTree = "<group>"; };
@@ -1073,7 +1071,6 @@
 			isa = PBXGroup;
 			children = (
 				C98B06E61A8E66F60034097F /* Sangre */,
-				C98B07031A8E66F60034097F /* SangreTests */,
 				C98B06E51A8E66F60034097F /* Products */,
 				C98B07101A8E670D0034097F /* GData */,
 			);
@@ -1116,23 +1113,6 @@
 			children = (
 				C98B06E81A8E66F60034097F /* Info.plist */,
 				C98B06E91A8E66F60034097F /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C98B07031A8E66F60034097F /* SangreTests */ = {
-			isa = PBXGroup;
-			children = (
-				C98B07061A8E66F60034097F /* SangreTests.m */,
-				C98B07041A8E66F60034097F /* Supporting Files */,
-			);
-			path = SangreTests;
-			sourceTree = "<group>";
-		};
-		C98B07041A8E66F60034097F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C98B07051A8E66F60034097F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
