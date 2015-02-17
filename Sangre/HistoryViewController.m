@@ -17,8 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tabBarController setDelegate:self];
-
     mBackend = [Backend singleton];
 }
 
@@ -53,18 +51,6 @@
     
     return cell;
 }
-
-#pragma mark UITabBarControllerDelegate
-
-- (void)tabBarController:(UITabBarController *)tabBarController
-    didSelectViewController:(UIViewController *) viewController {
-
-    if(tabBarController.selectedIndex == 0) {
-        HistoryViewController* historyViewController = (HistoryViewController*)viewController;
-        [historyViewController loadEvents];
-    }
-}
-
 
 #pragma mark NSObject
 

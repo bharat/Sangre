@@ -10,7 +10,7 @@
 #include "Backend.h"
 #include "BusyViewController.h"
 
-@interface HistoryViewController : BusyViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
+@interface HistoryViewController : BusyViewController <UITableViewDelegate, UITableViewDataSource>
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @end
 
