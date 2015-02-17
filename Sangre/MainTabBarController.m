@@ -20,10 +20,7 @@
     if (![backend isAuthenticated]) {
         UIViewController* authenticationViewController = [backend getAuthenticationViewController];
         [[self navigationController] pushViewController:authenticationViewController
-                                               animated:YES];
-
-        
+                                               animated:YES];        
     }
 }
-
 @end

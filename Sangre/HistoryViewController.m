@@ -20,6 +20,10 @@
     [self.tabBarController setDelegate:self];
 
     mBackend = [Backend singleton];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self loadEvents];
 }
 

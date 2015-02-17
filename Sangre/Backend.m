@@ -103,7 +103,7 @@
         
         [service setShouldCacheResponseData:NO];
         [service setServiceShouldFollowNextLinks:YES];
-        [service setUserCredentialsWithUsername:@"bharatman" password:PASSWORD];
+        [service setAuthorizer:mAuth];
     });
     
     return service;
