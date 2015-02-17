@@ -129,7 +129,6 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     // NSString* typeString = [[cols objectAtIndex:1] stringValue];
     NSString* valueStr = [[cols objectAtIndex:2] stringValue];
     
-    NSDate *x = [DateUtils toDate:timestampString];
     return [[BackendRow alloc] initWithType:kBloodSugar
                                     andDate:[DateUtils toDate:timestampString]
                                    andValue:[valueStr integerValue]];
