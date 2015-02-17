@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tabBarController setDelegate:self];
+
     mBackend = [Backend singleton];
     [self loadEvents];
 }

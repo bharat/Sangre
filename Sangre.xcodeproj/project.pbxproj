@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C95CA34A1A92A48700921699 /* BusyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3491A92A48700921699 /* BusyViewController.m */; };
+		C95CA3531A92BAC000921699 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3521A92BAC000921699 /* MainTabBarController.m */; };
 		C98B06EA1A8E66F60034097F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06E91A8E66F60034097F /* main.m */; };
 		C98B06ED1A8E66F60034097F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EC1A8E66F60034097F /* AppDelegate.m */; };
 		C98B06F01A8E66F60034097F /* Sangre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */; };
@@ -398,6 +399,8 @@
 /* Begin PBXFileReference section */
 		C95CA33D1A92A43D00921699 /* BusyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusyViewController.h; sourceTree = "<group>"; };
 		C95CA3491A92A48700921699 /* BusyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyViewController.m; sourceTree = "<group>"; };
+		C95CA3521A92BAC000921699 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		C95CA3541A92BAF500921699 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		C97784F71A901B7700CA829A /* Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Private.h; sourceTree = "<group>"; };
 		C98B06E41A8E66F60034097F /* Sangre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sangre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98B06E81A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1097,6 +1100,8 @@
 				C98B06F11A8E66F60034097F /* HistoryViewController.h */,
 				C98B06F21A8E66F60034097F /* HistoryViewController.m */,
 				C98B06F41A8E66F60034097F /* Main.storyboard */,
+				C95CA3541A92BAF500921699 /* MainTabBarController.h */,
+				C95CA3521A92BAC000921699 /* MainTabBarController.m */,
 				C98B06F71A8E66F60034097F /* Images.xcassets */,
 				C98B06F91A8E66F60034097F /* LaunchScreen.xib */,
 				C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */,
@@ -2242,6 +2247,7 @@
 				C98B0AA01A8E670F0034097F /* GDataServiceGooglePhotos.m in Sources */,
 				C98B0A4C1A8E670F0034097F /* GDataCodeSearchFile.m in Sources */,
 				C98B0A2A1A8E670F0034097F /* GDataFeedBlogComment.m in Sources */,
+				C95CA3531A92BAC000921699 /* MainTabBarController.m in Sources */,
 				C98B0A651A8E670F0034097F /* GDataServiceGoogleContact.m in Sources */,
 				C98B0AE81A8E670F0034097F /* GDataYouTubeElements.m in Sources */,
 				C98B0A471A8E670F0034097F /* GDataRecurrence.m in Sources */,

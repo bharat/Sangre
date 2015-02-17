@@ -35,17 +35,54 @@
 
 @implementation Backend {
     GDataFeedSpreadsheet* mFeed;
-    SEL mFinishedSelector;
+    GTMOAuth2Authentication* mAuth;
 }
 
 + (id) singleton {
     static Backend *singleton = nil;
     static dispatch_once_t onceToken;
 
+    // Create only one singleton
     dispatch_once(&onceToken, ^{
         singleton = [[self alloc] init];
     });
     return singleton;
+}
+
+- (BOOL) isAuthenticated {
+    return mAuth != nil;
+}
+
+- (UIViewController*) getAuthenticationViewController {
+    // Authenticate for spreadsheet feeds using OAuth
+    static NSString *const kKeychainItemName = @"com.menalto.Sangre";
+    NSString *kMyClientID =
+        @"336095338870-fqh5c3k8ug6772lcms8rmo07b0kqieh5.apps.googleusercontent.com";
+    NSString *kMyClientSecret = @"Pn2jFjL39S94ko0diFdb4z8_";
+    NSString *scope = @"https://spreadsheets.google.com/feeds";
+
+    GTMOAuth2ViewControllerTouch* viewController = [GTMOAuth2ViewControllerTouch alloc];
+    [viewController initWithScope:scope
+                         clientID:kMyClientID
+                     clientSecret:kMyClientSecret
+                 keychainItemName:kKeychainItemName
+                completionHandler:^(GTMOAuth2ViewControllerTouch *viewController, GTMOAuth2Authentication *auth, NSError *error) {
+                    if (error) {
+                        [[UIAlertView alloc] initWithTitle:@"auth error"
+                                                   message:[error debugDescription]
+                                                  delegate:self
+                                         cancelButtonTitle:@"cancel"
+                                         otherButtonTitles:@"ok", nil];
+                    } else {
+                        [[Backend singleton] setAuthentication:auth];
+                    }
+                }];
+    [viewController autorelease];
+    return viewController;
+}
+
+- (void) setAuthentication:(GTMOAuth2Authentication *)auth {
+    mAuth = auth;
 }
 
 - (void)setFeed:(GDataFeedSpreadsheet *)feed {
@@ -56,7 +93,6 @@
 - (GDataFeedSpreadsheet *)feed {
     return mFeed;
 }
-
 
 - (GDataServiceGoogleSpreadsheet *)spreadsheetService {
     static GDataServiceGoogleSpreadsheet* service = nil;
