@@ -8,6 +8,7 @@
 
 #import "HistoryViewController.h"
 #import "Backend.h"
+#import "DateUtils.h"
 
 @implementation HistoryViewController {
     Backend* mBackend;
@@ -47,7 +48,7 @@
     }
     
     BackendRow* row = [mBackend rowAt:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [row title], [row content]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %ld", [DateUtils toString:[row date]], (long)[row value]];
     
     return cell;
 }

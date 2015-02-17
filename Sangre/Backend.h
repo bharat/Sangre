@@ -11,9 +11,14 @@
 #import "GDataSpreadsheet.h"
 #import "GTMOAuth2ViewControllerTouch.h"
 
+typedef NS_ENUM(NSUInteger, HistoryEntryType) {
+    kBloodSugar
+};
+
 @interface BackendRow: NSObject
--(NSString*) title;
--(NSString*) content;
+-(NSDate*) date;
+-(HistoryEntryType) type;
+-(NSInteger) value;
 @end
 
 @interface Backend : NSObject

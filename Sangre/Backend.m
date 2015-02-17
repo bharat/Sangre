@@ -8,26 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "Backend.h"
+#import "DateUtils.h"
 @import UIKit;
 
 @implementation BackendRow {
-    NSString* mTitle;
-    NSString* mContent;
+    NSDate* mDate;
+    NSInteger mValue;
+    HistoryEntryType mType;
 }
 
-- (id) initWithTitle:(NSString*)title andContent:(NSString*)content {
+- (id) initWithType:(HistoryEntryType)type andDate:(NSDate*)date andValue:(NSInteger)value {
     self = [super init];
-    mTitle = title;
-    mContent = content;
+    mType = type;
+    mDate = date;
+    mValue = value;
     return self;
 }
 
-- (NSString*) content {
-    return mContent;
+- (HistoryEntryType) type {
+    return mType;
 }
 
-- (NSString*) title {
-    return mTitle;
+- (NSDate*) date {
+    return mDate;
+}
+
+- (NSInteger) value {
+    return mValue;
 }
 @end
 
@@ -115,11 +122,17 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     return service;
 }
 
-
 - (BackendRow *) rowAt:(NSInteger)index {
-    GDataEntrySpreadsheet* row = [[mFeed entries] objectAtIndex:index];
-    return [[BackendRow alloc] initWithTitle:[[row title] stringValue]
-                                  andContent:[[row content] stringValue]];
+    GDataEntrySpreadsheetList* row = [[mFeed entries] objectAtIndex:index];
+    NSArray* cols = [row customElements];
+    NSString* timestampString = [[cols objectAtIndex:0] stringValue];
+    // NSString* typeString = [[cols objectAtIndex:1] stringValue];
+    NSString* valueStr = [[cols objectAtIndex:2] stringValue];
+    
+    NSDate *x = [DateUtils toDate:timestampString];
+    return [[BackendRow alloc] initWithType:kBloodSugar
+                                    andDate:[DateUtils toDate:timestampString]
+                                   andValue:[valueStr integerValue]];
 }
 
 
@@ -152,22 +165,11 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 }
 
 -(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback {
-    NSDate* now = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MM/dd/YYYY HH:MM:SS";
-    
-    // Convert the date to PST since that's what our spreadsheet expects
-    NSTimeZone *currentTimeZone = [NSTimeZone localTimeZone];
-    NSTimeZone *pstTimeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
-    
-    NSInteger currentPstOffset = [currentTimeZone secondsFromGMTForDate:now];
-    NSInteger pstOffset = [pstTimeZone secondsFromGMTForDate:now];
-    NSTimeInterval delta = pstOffset - currentPstOffset;
-    NSDate *pstDate = [[[NSDate alloc] initWithTimeInterval:delta sinceDate:now] autorelease];
+    NSDate* now = [DateUtils normalizeTimezone:[NSDate date]];
     
     GDataEntrySpreadsheetList *entry = [GDataEntrySpreadsheetList listEntry];
     GDataSpreadsheetCustomElement *obj1 =
-        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[formatter stringFromDate:pstDate]];
+        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[DateUtils toString:now]];
     GDataSpreadsheetCustomElement *obj2 =
         [GDataSpreadsheetCustomElement elementWithName:@"type" stringValue:@"bg"];
     GDataSpreadsheetCustomElement *obj3 =

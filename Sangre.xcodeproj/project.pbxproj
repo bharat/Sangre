@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C95CA34A1A92A48700921699 /* BusyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3491A92A48700921699 /* BusyViewController.m */; };
 		C95CA3531A92BAC000921699 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3521A92BAC000921699 /* MainTabBarController.m */; };
+		C9718E9A1A93FCFD00DC527C /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9718E991A93FCFD00DC527C /* DateUtils.m */; };
 		C98B06EA1A8E66F60034097F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06E91A8E66F60034097F /* main.m */; };
 		C98B06ED1A8E66F60034097F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EC1A8E66F60034097F /* AppDelegate.m */; };
 		C98B06F01A8E66F60034097F /* Sangre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */; };
@@ -401,6 +402,8 @@
 		C95CA3491A92A48700921699 /* BusyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyViewController.m; sourceTree = "<group>"; };
 		C95CA3521A92BAC000921699 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		C95CA3541A92BAF500921699 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		C9718E991A93FCFD00DC527C /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
+		C9718EA61A93FD3F00DC527C /* DateUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		C98B06E41A8E66F60034097F /* Sangre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sangre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98B06E81A8E66F60034097F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98B06E91A8E66F60034097F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1103,6 +1106,8 @@
 				C98B06EE1A8E66F60034097F /* Sangre.xcdatamodeld */,
 				C9D9D01E1A8EA92000439ACA /* Backend.m */,
 				C9D9D02B1A8EA93200439ACA /* Backend.h */,
+				C9718E991A93FCFD00DC527C /* DateUtils.m */,
+				C9718EA61A93FD3F00DC527C /* DateUtils.h */,
 				C98B06E71A8E66F60034097F /* Supporting Files */,
 			);
 			path = Sangre;
@@ -2198,6 +2203,7 @@
 				C98B0A581A8E670F0034097F /* GDataContactPriority.m in Sources */,
 				C98B0B121A8E670F0034097F /* GTMGatherInputStream.m in Sources */,
 				C98B0AFF1A8E670F0034097F /* GDataIM.m in Sources */,
+				C9718E9A1A93FCFD00DC527C /* DateUtils.m in Sources */,
 				C98B0AAC1A8E670F0034097F /* GDataFeedWorksheet.m in Sources */,
 				C98B0A9A1A8E670F0034097F /* GDataFeedPhotoAlbum.m in Sources */,
 				C98B0A081A8E670F0034097F /* GDataACLKeyedRole.m in Sources */,
