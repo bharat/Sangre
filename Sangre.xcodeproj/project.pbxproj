@@ -398,6 +398,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C95B4AA31A991A3A00A02F7D /* DataEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
 		C95CA33D1A92A43D00921699 /* BusyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusyViewController.h; sourceTree = "<group>"; };
 		C95CA3491A92A48700921699 /* BusyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyViewController.m; sourceTree = "<group>"; };
 		C95CA3521A92BAC000921699 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
@@ -1053,7 +1054,6 @@
 		C98B09BE1A8E670F0034097F /* GDataUnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GDataUnitTests-Info.plist"; sourceTree = "<group>"; };
 		C98B0A061A8E670F0034097F /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C98B0A071A8E670F0034097F /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
-		C9A7CB6E1A928C190002DC54 /* DataEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DataEntryViewController.h; path = ../DataEntryViewController.h; sourceTree = "<group>"; };
 		C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		C9D9D01E1A8EA92000439ACA /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		C9D9D02B1A8EA93200439ACA /* Backend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
@@ -1094,7 +1094,7 @@
 				C98B06EC1A8E66F60034097F /* AppDelegate.m */,
 				C95CA33D1A92A43D00921699 /* BusyViewController.h */,
 				C95CA3491A92A48700921699 /* BusyViewController.m */,
-				C9A7CB6E1A928C190002DC54 /* DataEntryViewController.h */,
+				C95B4AA31A991A3A00A02F7D /* DataEntryViewController.h */,
 				C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */,
 				C98B06F11A8E66F60034097F /* HistoryViewController.h */,
 				C98B06F21A8E66F60034097F /* HistoryViewController.m */,
