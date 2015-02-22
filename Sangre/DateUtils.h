@@ -13,7 +13,6 @@
 + (NSDate*)toDate:(NSString*)timestampString;
 + (NSString*)toString:(NSDate*)date;
 + (NSDate*)normalizeTimezone:(NSDate*)date;
-+ (NSDateFormatter*)formatter;
 @end
 
 #endif

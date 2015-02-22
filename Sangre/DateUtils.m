@@ -11,19 +11,6 @@
 
 @implementation DateUtils
 
-+ (NSDateFormatter*)formatter {
-    static dispatch_once_t onceToken;
-    static NSDateFormatter *formatter = nil;
-    
-    dispatch_once(&onceToken, ^{
-        formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
-        [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
-    });
-                  
-    return formatter;
-}
-
 + (NSDate *)normalizeTimezone:(NSDate *)date {
     NSTimeZone *currentTimeZone = [NSTimeZone localTimeZone];
     NSTimeZone *pstTimeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
@@ -36,10 +23,14 @@
 }
 
 + (NSDate *)toDate:(NSString *)timestampString {
-    return [self.formatter dateFromString:timestampString];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
+    return [formatter dateFromString:timestampString];
 }
 
 + (NSString*)toString:(NSDate*)date {
-    return [self.formatter stringFromDate:date];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MMM HH:mm";
+    return [formatter stringFromDate:date];
 }
 @end

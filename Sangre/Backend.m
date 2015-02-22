@@ -144,7 +144,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 
 - (void) loadEvents:(void(^)(BOOL))callback {
     GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
-    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/2/private/full"];
+    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/1/private/full"];
     
     [service fetchFeedWithURL:eventsFeedURL
             completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
