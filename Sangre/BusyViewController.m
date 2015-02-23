@@ -15,6 +15,10 @@
 }
 
 - (void) startBeingBusy {
+    if (mActivityOverlay) {
+        return;
+    }
+
     mActivityOverlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     mActivityOverlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -25,7 +29,14 @@
 }
 
 - (void) stopBeingBusy {
-    [mActivityOverlay removeFromSuperview];
-    [mActivityOverlay dealloc];
+    if (mActivityOverlay) {
+        [mActivityOverlay removeFromSuperview];
+        [mActivityOverlay dealloc];
+        mActivityOverlay = nil;
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self stopBeingBusy];
 }
 @end
