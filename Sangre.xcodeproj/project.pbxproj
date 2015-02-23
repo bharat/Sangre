@@ -1148,7 +1148,7 @@
 				C98B0A051A8E670F0034097F /* XMLSupport */,
 			);
 			name = GData;
-			path = ../GData;
+			path = GData;
 			sourceTree = "<group>";
 		};
 		C98B07111A8E670D0034097F /* ACL */ = {
