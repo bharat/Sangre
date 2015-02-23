@@ -34,22 +34,31 @@
 
 #pragma mark UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [mBackend count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [mBackend dateCount];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[mBackend dateAtIndex:section] count];
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[mBackend dateAtIndex:section] title];
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"BloodGlucose";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    BackendRow* row = [mBackend rowAt:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %ld", [DateUtils toString:[row date]], (long)[row value]];
+    UILabel* timeLabel = (UILabel*)[cell viewWithTag:1];
+    UILabel* bgLabel = (UILabel*)[cell viewWithTag:2];
     
+    BackendEntry* row = [[mBackend dateAtIndex:indexPath.section] entryAtIndex:indexPath.row];
+    [timeLabel setText:[DateUtils toTimeString:[row date]]];
+    [bgLabel setText:[row value]];
     return cell;
 }
 
@@ -71,7 +80,9 @@
 
 - (void) eventsLoaded {
     [[self tableView] reloadData];
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow:[mBackend count]-1 inSection:0];
+    NSInteger lastSectionIndex = [mBackend dateCount] - 1;
+    NSInteger lastRowIndex = [[mBackend dateAtIndex:lastSectionIndex] count] - 1;
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow:lastRowIndex inSection:lastSectionIndex];
     [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     [self stopBeingBusy];
 }

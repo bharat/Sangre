@@ -15,22 +15,34 @@ typedef NS_ENUM(NSUInteger, HistoryEntryType) {
     kBloodSugar
 };
 
-@interface BackendRow: NSObject
+@interface BackendEntry: NSObject
 -(NSDate*) date;
 -(HistoryEntryType) type;
--(NSInteger) value;
+-(NSString*) value;
+@end
+
+@interface BackendDate: NSObject
+-(id) initWithTitle:(NSString*)title;
+-(NSString*) title;
+-(NSInteger) count;
+-(BackendEntry*) entryAtIndex:(NSInteger)index;
+-(void) add:(BackendEntry*)entry;
+@end
+
+@interface BackendDateArray: NSObject
+-(NSInteger) count;
 @end
 
 @interface Backend : NSObject
 +(id) singleton;
-+(void)loadAuthenticationFromKeychain;
++(void) loadAuthenticationFromKeychain;
 
--(UIViewController*)getAuthenticationViewController;
--(BOOL)isAuthenticated;
--(void)setAuthentication:(GTMOAuth2Authentication*)auth;
+-(UIViewController*) getAuthenticationViewController;
+-(BOOL) isAuthenticated;
+-(void) setAuthentication:(GTMOAuth2Authentication*)auth;
 
--(NSInteger) count;
--(BackendRow*) rowAt:(NSInteger)index;
+-(NSInteger) dateCount;
+-(BackendDate*) dateAtIndex:(NSInteger)index;
 
 -(void) loadEvents:(void(^)(BOOL))callback;
 -(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback;

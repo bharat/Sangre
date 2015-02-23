@@ -10,9 +10,10 @@
 #define Sangre_DateUtils_h
 
 @interface DateUtils : NSObject
-+ (NSDate*)toDate:(NSString*)timestampString;
-+ (NSString*)toString:(NSDate*)date;
++ (NSDate*)googleDocsFormatToDate:(NSString*)timestampString;
 + (NSDate*)normalizeTimezone:(NSDate*)date;
++ (NSString*)toDateString:(NSDate*)date;
++ (NSString*)toTimeString:(NSDate*)date;
 @end
 
 #endif

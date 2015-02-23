@@ -11,17 +11,17 @@
 #import "DateUtils.h"
 @import UIKit;
 
-@implementation BackendRow {
+@implementation BackendEntry {
     NSDate* mDate;
-    NSInteger mValue;
+    NSString* mValue;
     HistoryEntryType mType;
 }
 
-- (id) initWithType:(HistoryEntryType)type andDate:(NSDate*)date andValue:(NSInteger)value {
+- (id) initWithType:(HistoryEntryType)type andDate:(NSDate*)date andValue:(NSString*)value {
     self = [super init];
     mType = type;
     mDate = date;
-    mValue = value;
+    mValue = [value retain];
     return self;
 }
 
@@ -33,8 +33,68 @@
     return mDate;
 }
 
-- (NSInteger) value {
+- (NSString*) value {
     return mValue;
+}
+@end
+
+@implementation BackendDate {
+    NSString* mTitle;
+    NSMutableArray* mEntries;
+}
+
+-(id)initWithTitle:(NSString *)title {
+    self = [super init];
+    mTitle = title;
+    mEntries = [[NSMutableArray alloc] init];
+    return self;
+}
+
+-(NSString*) title {
+    return mTitle;
+}
+
+-(BackendEntry*) entryAtIndex:(NSInteger)index {
+    return (BackendEntry*)[mEntries objectAtIndex:index];
+}
+
+-(NSInteger) count {
+    return [mEntries count];
+}
+
+-(void) add:(BackendEntry *)entry {
+    [mEntries addObject:entry];
+}
+@end
+
+
+@implementation BackendDateArray {
+    NSMutableDictionary* mDates;
+    NSMutableArray* mDateOrder;
+}
+
+-(id) init {
+    self = [super init];
+    mDates = [[NSMutableDictionary alloc] init];
+    mDateOrder = [[NSMutableArray alloc] init];
+    return self;
+}
+
+-(void) add:(BackendEntry*)entry {
+    NSString* title = [DateUtils toDateString:entry.date];
+    if (![mDates valueForKey:title]) {
+        [mDates setValue:[[BackendDate alloc] initWithTitle:title] forKey:title];
+        [mDateOrder addObject:title];
+    }
+    [[mDates valueForKey:title] add:entry];
+}
+
+- (id)objectAtIndex:(NSUInteger)index {
+    return [mDates objectForKey:[mDateOrder objectAtIndex:index]];
+}
+
+- (NSInteger)count {
+    return [mDateOrder count];
 }
 @end
 
@@ -42,6 +102,7 @@
 @implementation Backend {
     GDataFeedSpreadsheet* mFeed;
     GTMOAuth2Authentication* mAuth;
+    BackendDateArray* mDateArray;
 }
 
 NSString *kKeychainItemName = @"com.menalto.Sangre";
@@ -57,6 +118,8 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     });
     return singleton;
 }
+
+#pragma mark OAuth
 
 + (void) loadAuthenticationFromKeychain {
     GTMOAuth2Authentication* auth;
@@ -98,13 +161,11 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     mAuth = [auth retain];
 }
 
+#pragma mark GData
+
 - (void)setFeed:(GDataFeedSpreadsheet *)feed {
     [mFeed autorelease];
     mFeed = [feed retain];
-}
-
-- (GDataFeedSpreadsheet *)feed {
-    return mFeed;
 }
 
 - (GDataServiceGoogleSpreadsheet *)spreadsheetService {
@@ -122,29 +183,28 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     return service;
 }
 
-- (BackendRow *) rowAt:(NSInteger)index {
-    GDataEntrySpreadsheetList* row = [[mFeed entries] objectAtIndex:index];
-    NSArray* cols = [row customElements];
-    NSString* timestampString = [[cols objectAtIndex:0] stringValue];
-    // NSString* typeString = [[cols objectAtIndex:1] stringValue];
-    NSString* valueStr = [[cols objectAtIndex:2] stringValue];
-    
-    return [[BackendRow alloc] initWithType:kBloodSugar
-                                    andDate:[DateUtils toDate:timestampString]
-                                   andValue:[valueStr integerValue]];
+#pragma mark Backend
+
+- (BackendDate*) dateAtIndex:(NSInteger)index {
+    return [mDateArray objectAtIndex:index];
 }
 
+- (BackendEntry*) entryAt:(NSInteger)entryIndex forDateAtIndex:(NSInteger)dateIndex {
+    return [[mDateArray objectAtIndex:dateIndex] objectAtIndex:entryIndex];
+}
 
-- (NSInteger) count {
-    if (mFeed) {
-        return [[mFeed entries] count];
-    }
-    return 0;
+- (NSString*) titleForDateAtIndex:(NSInteger)index {
+    return [[mDateArray objectAtIndex:index] title];
+}
+
+- (NSInteger) dateCount {
+    return [mDateArray count];
 }
 
 - (void) loadEvents:(void(^)(BOOL))callback {
     GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
-    NSURL *eventsFeedURL = [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/1/private/full"];
+    NSURL *eventsFeedURL =
+      [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/1/private/full"];
     
     [service fetchFeedWithURL:eventsFeedURL
             completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
@@ -156,6 +216,15 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
                                      otherButtonTitles:@"ok", nil];
                     callback(YES);
                 } else {
+                    mDateArray = [[BackendDateArray alloc] init];
+                    for (GDataEntrySpreadsheetList* row in [feed entries]) {
+                        NSArray* cols = [row customElements];
+                        NSString* timestampString = [[cols objectAtIndex:0] stringValue];
+                        NSString* valueStr = [[cols objectAtIndex:2] stringValue];
+                        [mDateArray add:[[BackendEntry alloc] initWithType:kBloodSugar
+                                                            andDate:[DateUtils googleDocsFormatToDate:timestampString]
+                                                           andValue:valueStr]];
+                    }
                     [self setFeed:(GDataFeedSpreadsheet*)feed];
                     callback(YES);
                 }
@@ -168,7 +237,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     
     GDataEntrySpreadsheetList *entry = [GDataEntrySpreadsheetList listEntry];
     GDataSpreadsheetCustomElement *obj1 =
-        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[DateUtils toString:now]];
+        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[DateUtils toTimeString:now]];
     GDataSpreadsheetCustomElement *obj2 =
         [GDataSpreadsheetCustomElement elementWithName:@"type" stringValue:@"bg"];
     GDataSpreadsheetCustomElement *obj3 =

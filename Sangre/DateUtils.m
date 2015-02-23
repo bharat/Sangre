@@ -22,15 +22,21 @@
     return pstDate;
 }
 
-+ (NSDate *)toDate:(NSString *)timestampString {
++ (NSDate *)googleDocsFormatToDate:(NSString *)timestampString {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
     return [formatter dateFromString:timestampString];
 }
 
-+ (NSString*)toString:(NSDate*)date {
++ (NSString*)toTimeString:(NSDate*)date {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"dd-MMM HH:mm";
+    formatter.dateFormat = @"HH:mm";
+    return [formatter stringFromDate:date];
+}
+
++ (NSString*)toDateString:(NSDate*)date {
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MMM";
     return [formatter stringFromDate:date];
 }
 @end
