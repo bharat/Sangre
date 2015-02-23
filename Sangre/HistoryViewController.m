@@ -46,6 +46,10 @@
     return [[mBackend dateAtIndex:section] title];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 38.0;
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"BloodGlucose";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
