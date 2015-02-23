@@ -20,6 +20,11 @@
     mBackend = [Backend singleton];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
+}
+
 #pragma mark NSObject
 
 - (void)dealloc {

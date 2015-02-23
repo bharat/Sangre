@@ -24,8 +24,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadEvents];
+    [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

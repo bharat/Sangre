@@ -222,7 +222,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
                         NSString* timestampString = [[cols objectAtIndex:0] stringValue];
                         NSString* valueStr = [[cols objectAtIndex:2] stringValue];
                         [mDateArray add:[[BackendEntry alloc] initWithType:kBloodSugar
-                                                            andDate:[DateUtils googleDocsFormatToDate:timestampString]
+                                                            andDate:[DateUtils googleDocsStringToDate:timestampString]
                                                            andValue:valueStr]];
                     }
                     [self setFeed:(GDataFeedSpreadsheet*)feed];
@@ -233,11 +233,11 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 }
 
 -(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback {
-    NSDate* now = [DateUtils normalizeTimezone:[NSDate date]];
+    NSDate* now = [DateUtils convertLocalTimezoneToSystemTimezone:[NSDate date]];
     
     GDataEntrySpreadsheetList *entry = [GDataEntrySpreadsheetList listEntry];
     GDataSpreadsheetCustomElement *obj1 =
-        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[DateUtils toTimeString:now]];
+        [GDataSpreadsheetCustomElement elementWithName:@"timestamp" stringValue:[DateUtils toGoogleDocsString:now]];
     GDataSpreadsheetCustomElement *obj2 =
         [GDataSpreadsheetCustomElement elementWithName:@"type" stringValue:@"bg"];
     GDataSpreadsheetCustomElement *obj3 =

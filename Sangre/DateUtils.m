@@ -11,7 +11,7 @@
 
 @implementation DateUtils
 
-+ (NSDate *)normalizeTimezone:(NSDate *)date {
++ (NSDate *)convertLocalTimezoneToSystemTimezone:(NSDate *)date {
     NSTimeZone *currentTimeZone = [NSTimeZone localTimeZone];
     NSTimeZone *pstTimeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
     
@@ -22,7 +22,7 @@
     return pstDate;
 }
 
-+ (NSDate *)googleDocsFormatToDate:(NSString *)timestampString {
++ (NSDate *)googleDocsStringToDate:(NSString *)timestampString {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
     return [formatter dateFromString:timestampString];
@@ -37,6 +37,12 @@
 + (NSString*)toDateString:(NSDate*)date {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"dd-MMM";
+    return [formatter stringFromDate:date];
+}
+
++ (NSString*)toGoogleDocsString:(NSDate*)date {
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
     return [formatter stringFromDate:date];
 }
 @end
