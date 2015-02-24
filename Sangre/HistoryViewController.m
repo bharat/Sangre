@@ -24,8 +24,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadEvents];
-    [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
-    [self.navigationController.navigationBar.topItem setRightBarButtonItem:self.editButtonItem animated:animated];
+
+    UINavigationItem* topItem = self.navigationController.navigationBar.topItem;
+    [topItem setTitle:[self.tabBarItem title]];
+    [topItem setRightBarButtonItem:self.editButtonItem animated:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -35,6 +37,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:animated];
 }
 
 #pragma mark UITableViewDataSource
