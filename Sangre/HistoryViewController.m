@@ -25,6 +25,11 @@
     [super viewDidAppear:animated];
     [self loadEvents];
     [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:self.editButtonItem animated:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:nil animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,10 +49,6 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [[mBackend dateAtIndex:section] title];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 38.0;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
