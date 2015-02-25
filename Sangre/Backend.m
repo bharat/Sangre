@@ -65,6 +65,10 @@
 -(void) add:(BackendEntry *)entry {
     [mEntries addObject:entry];
 }
+
+-(void)deleteAtIndex:(NSInteger)index {
+    [mEntries removeObjectAtIndex:index];
+}
 @end
 
 

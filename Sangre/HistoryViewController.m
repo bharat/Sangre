@@ -24,10 +24,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadEvents];
-
-    UINavigationItem* topItem = self.navigationController.navigationBar.topItem;
-    [topItem setTitle:[self.tabBarItem title]];
-    [topItem setRightBarButtonItem:self.editButtonItem animated:animated];
+    [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -39,12 +36,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
-}
-
 #pragma mark UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[mBackend dateAtIndex:indexPath.section] deleteAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [mBackend dateCount];
