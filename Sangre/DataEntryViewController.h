@@ -12,7 +12,6 @@
 
 @interface DataEntryViewController : BusyViewController
 - (IBAction)addBgValue:(id)sender;
-- (IBAction)cancel:(id)sender;
 @property (retain, nonatomic) IBOutlet UITextField *bgValue;
 @end
 

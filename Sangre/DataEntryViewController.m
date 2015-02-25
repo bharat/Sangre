@@ -45,11 +45,6 @@
      ];
 }
 
-- (IBAction)cancel:(id)sender {
-    [self.view endEditing:YES];
-    [self switchToHistoryTab];
-}
-
 - (void) switchToHistoryTab {
     [self.tabBarController setSelectedIndex:0];
     [self.tabBarController.delegate tabBarController:self.tabBarController
