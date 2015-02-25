@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, HistoryEntryType) {
 -(NSInteger) count;
 -(BackendEntry*) entryAtIndex:(NSInteger)index;
 -(void) add:(BackendEntry*)entry;
--(void) deleteAtIndex:(NSInteger)index;
+-(void) deleteAtIndex:(NSInteger)index andThen:(void(^)(BOOL))callback;
 @end
 
 @interface BackendDateArray: NSObject
@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, HistoryEntryType) {
 
 -(void) loadEvents:(void(^)(BOOL))callback;
 -(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback;
+-(void) deleteEntry:(id)entryId andThen:(void(^)(BOOL))callback;
 @end
 
 #endif

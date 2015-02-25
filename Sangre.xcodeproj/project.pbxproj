@@ -1147,7 +1147,6 @@
 				C98B09B91A8E670F0034097F /* Resources */,
 				C98B0A051A8E670F0034097F /* XMLSupport */,
 			);
-			name = GData;
 			path = GData;
 			sourceTree = "<group>";
 		};

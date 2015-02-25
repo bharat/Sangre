@@ -23,7 +23,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self loadEvents];
+
+    [self startBeingBusy];
+    [mBackend loadEvents:^(BOOL success) {
+        [[self tableView] reloadData];
+        [self scrollToBottom];
+        [self stopBeingBusy];
+    }];
+    
     [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
 }
 
@@ -40,9 +47,18 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[mBackend dateAtIndex:indexPath.section] deleteAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationLeft];
+        [self startBeingBusy];
+        [[mBackend dateAtIndex:indexPath.section] deleteAtIndex:indexPath.row andThen:^(BOOL success) {
+            if (success) {
+                // Once we modify the data our existing feed is invalid so we need to reload all the data.
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                 withRowAnimation:UITableViewRowAnimationLeft];
+                [mBackend loadEvents:^(BOOL success) {
+                    [[self tableView] reloadData];
+                }];
+            }
+            [self stopBeingBusy];
+        }];
     }
 }
 
@@ -83,19 +99,10 @@
 
 #pragma mark HistoryViewController
 
-- (void) loadEvents {
-    [self startBeingBusy];
-    [mBackend loadEvents:^(BOOL success) {
-        [self eventsLoaded];
-    }];
-}
-
-- (void) eventsLoaded {
-    [[self tableView] reloadData];
+- (void) scrollToBottom {
     NSInteger lastSectionIndex = [mBackend dateCount] - 1;
     NSInteger lastRowIndex = [[mBackend dateAtIndex:lastSectionIndex] count] - 1;
     NSIndexPath* ipath = [NSIndexPath indexPathForRow:lastRowIndex inSection:lastSectionIndex];
     [[self tableView] scrollToRowAtIndexPath:ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
-    [self stopBeingBusy];
 }
 @end

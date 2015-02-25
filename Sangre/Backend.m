@@ -15,13 +15,15 @@
     NSDate* mDate;
     NSString* mValue;
     HistoryEntryType mType;
+    id mEntryId;
 }
 
-- (id) initWithType:(HistoryEntryType)type andDate:(NSDate*)date andValue:(NSString*)value {
+- (id) initWithDate:(NSDate*)date andValue:(NSString*)value andId:(id)entryId {
     self = [super init];
-    mType = type;
     mDate = date;
-    mValue = [value retain];
+    mValue = value;
+    mType = kBloodSugar;
+    mEntryId = entryId;
     return self;
 }
 
@@ -35,6 +37,10 @@
 
 - (NSString*) value {
     return mValue;
+}
+
+- (id)entryId {
+    return mEntryId;
 }
 @end
 
@@ -66,8 +72,13 @@
     [mEntries addObject:entry];
 }
 
--(void)deleteAtIndex:(NSInteger)index {
-    [mEntries removeObjectAtIndex:index];
+-(void)deleteAtIndex:(NSInteger)index andThen:(void (^)(BOOL))callback {
+    [[Backend singleton] deleteEntry:[[self entryAtIndex:index] entryId] andThen:^(BOOL success){
+        if (success) {
+            [mEntries removeObjectAtIndex:index];
+        }
+        callback(success);
+    }];
 }
 @end
 
@@ -205,34 +216,33 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     return [mDateArray count];
 }
 
-- (void) loadEvents:(void(^)(BOOL))callback {
+-(void) loadEvents:(void(^)(BOOL))callback {
     GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
     NSURL *eventsFeedURL =
       [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/1/private/full"];
     
     [service fetchFeedWithURL:eventsFeedURL
-            completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
-                if (error) {
-                    [[UIAlertView alloc] initWithTitle:@"feed error"
-                                               message:[error debugDescription]
-                                              delegate:self
-                                     cancelButtonTitle:@"cancel"
-                                     otherButtonTitles:@"ok", nil];
-                    callback(YES);
-                } else {
-                    mDateArray = [[BackendDateArray alloc] init];
-                    for (GDataEntrySpreadsheetList* row in [feed entries]) {
-                        NSArray* cols = [row customElements];
-                        NSString* timestampString = [[cols objectAtIndex:0] stringValue];
-                        NSString* valueStr = [[cols objectAtIndex:2] stringValue];
-                        [mDateArray add:[[BackendEntry alloc] initWithType:kBloodSugar
-                                                            andDate:[DateUtils googleDocsStringToDate:timestampString]
-                                                           andValue:valueStr]];
-                    }
-                    [self setFeed:(GDataFeedSpreadsheet*)feed];
-                    callback(YES);
+        completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
+            if (error) {
+                [[UIAlertView alloc] initWithTitle:@"feed error"
+                                           message:[error debugDescription]
+                                          delegate:self
+                                 cancelButtonTitle:@"cancel"
+                                 otherButtonTitles:@"ok", nil];
+            } else {
+                mDateArray = [[BackendDateArray alloc] init];
+                for (GDataEntrySpreadsheetList* row in [feed entries]) {
+                    NSArray* cols = [row customElements];
+                    BackendEntry* entry = [BackendEntry alloc];
+                    [entry initWithDate:[DateUtils googleDocsStringToDate:[[cols objectAtIndex:0] stringValue]]
+                               andValue:[[cols objectAtIndex:2] stringValue]
+                                  andId:row];
+                    [mDateArray add:entry];
                 }
+                [self setFeed:(GDataFeedSpreadsheet*)feed];
             }
+            callback(error == nil);
+        }
      ];
 }
 
@@ -249,22 +259,37 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     NSArray* array = [NSArray arrayWithObjects:obj1, obj2, obj3, nil];
     [entry setCustomElements:array];
 
-    GDataServiceGoogleSpreadsheet* svc = [self spreadsheetService];
-    [svc fetchEntryByInsertingEntry:entry
-                         forFeedURL:[[mFeed postLink] URL]
-                  completionHandler:^(GDataServiceTicket *ticket, GDataEntryBase *entry, NSError *error) {
-                      if (error) {
-                          [[UIAlertView alloc] initWithTitle:@"feed error"
-                                                     message:[error debugDescription]
-                                                    delegate:self
-                                           cancelButtonTitle:@"cancel"
-                                           otherButtonTitles:@"ok", nil];
-                          callback(NO);
-                      } else {
-                          callback(YES);
+    GDataServiceGoogleSpreadsheet* service = [self spreadsheetService];
+    [service fetchEntryByInsertingEntry:entry
+                             forFeedURL:[[mFeed postLink] URL]
+                      completionHandler:^(GDataServiceTicket *ticket, GDataEntryBase *entry, NSError *error) {
+                          if (error) {
+                              [[UIAlertView alloc] initWithTitle:@"feed error"
+                                                         message:[error debugDescription]
+                                                        delegate:self
+                                               cancelButtonTitle:@"cancel"
+                                               otherButtonTitles:@"ok", nil];
+                          }
+                          callback(error == nil);
                       }
-                  }
      ];
 }
+
+-(void) deleteEntry:(id)entryId andThen:(void (^)(BOOL))callback {
+    GDataServiceGoogleSpreadsheet* service = [self spreadsheetService];
+    [service deleteEntry:entryId
+       completionHandler:^(GDataServiceTicket *ticket, GDataEntryBase *entry, NSError *error) {
+           if (error) {
+               [[UIAlertView alloc] initWithTitle:@"feed error"
+                                          message:[error debugDescription]
+                                         delegate:self
+                                cancelButtonTitle:@"cancel"
+                                otherButtonTitles:@"ok", nil];
+           }
+           callback(error == nil);
+       }
+     ];
+}
+
 @end
 
