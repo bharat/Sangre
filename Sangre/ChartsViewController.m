@@ -30,6 +30,10 @@ NSString* kChartURL = @"https://docs.google.com/spreadsheets/d/1SCVZzclIEYrSohgp
     [self loadImage:kChartURL];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
+}
+
 - (void)dealloc {
     [_imageView release];
     [super dealloc];
