@@ -1073,9 +1073,9 @@
 		C98B06DB1A8E66F60034097F = {
 			isa = PBXGroup;
 			children = (
+				C98E885F1A9EB51C0046FCD4 /* Libraries */,
 				C98B06E61A8E66F60034097F /* Sangre */,
 				C98B06E51A8E66F60034097F /* Products */,
-				C98B07101A8E670D0034097F /* GData */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2019,6 +2019,14 @@
 				C98B0A071A8E670F0034097F /* GDataXMLNode.m */,
 			);
 			path = XMLSupport;
+			sourceTree = "<group>";
+		};
+		C98E885F1A9EB51C0046FCD4 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				C98B07101A8E670D0034097F /* GData */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
