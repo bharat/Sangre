@@ -327,6 +327,7 @@
 		C98B0B491A8E670F0034097F /* GDataFramework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09BD1A8E670F0034097F /* GDataFramework-Info.plist */; };
 		C98B0B4A1A8E670F0034097F /* GDataUnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C98B09BE1A8E670F0034097F /* GDataUnitTests-Info.plist */; };
 		C98B0B891A8E670F0034097F /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C98B0A071A8E670F0034097F /* GDataXMLNode.m */; };
+		C98E888D1A9EF9080046FCD4 /* ChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E888C1A9EF9080046FCD4 /* ChartsViewController.m */; };
 		C9A7CB741A928CD40002DC54 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */; };
 		C9D9D01F1A8EA92000439ACA /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D9D01E1A8EA92000439ACA /* Backend.m */; };
 /* End PBXBuildFile section */
@@ -1054,6 +1055,8 @@
 		C98B09BE1A8E670F0034097F /* GDataUnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GDataUnitTests-Info.plist"; sourceTree = "<group>"; };
 		C98B0A061A8E670F0034097F /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		C98B0A071A8E670F0034097F /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		C98E888B1A9EF8CC0046FCD4 /* ChartsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartsViewController.h; sourceTree = "<group>"; };
+		C98E888C1A9EF9080046FCD4 /* ChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsViewController.m; sourceTree = "<group>"; };
 		C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		C9D9D01E1A8EA92000439ACA /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		C9D9D02B1A8EA93200439ACA /* Backend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
@@ -1094,6 +1097,8 @@
 				C98B06EC1A8E66F60034097F /* AppDelegate.m */,
 				C95CA33D1A92A43D00921699 /* BusyViewController.h */,
 				C95CA3491A92A48700921699 /* BusyViewController.m */,
+				C98E888B1A9EF8CC0046FCD4 /* ChartsViewController.h */,
+				C98E888C1A9EF9080046FCD4 /* ChartsViewController.m */,
 				C95B4AA31A991A3A00A02F7D /* DataEntryViewController.h */,
 				C9A7CB731A928CD40002DC54 /* DataEntryViewController.m */,
 				C98B06F11A8E66F60034097F /* HistoryViewController.h */,
@@ -2242,6 +2247,7 @@
 				C98B0A651A8E670F0034097F /* GDataServiceGoogleContact.m in Sources */,
 				C98B0AE81A8E670F0034097F /* GDataYouTubeElements.m in Sources */,
 				C98B0A471A8E670F0034097F /* GDataRecurrence.m in Sources */,
+				C98E888D1A9EF9080046FCD4 /* ChartsViewController.m in Sources */,
 				C98B0A1C1A8E670F0034097F /* GDataAnalyticsMetric.m in Sources */,
 				C98B0A331A8E670F0034097F /* GDataFeedVolume.m in Sources */,
 				C98B0A221A8E670F0034097F /* GDataFeedAnalyticsData.m in Sources */,
