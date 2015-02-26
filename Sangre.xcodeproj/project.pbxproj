@@ -1073,9 +1073,9 @@
 		C98B06DB1A8E66F60034097F = {
 			isa = PBXGroup;
 			children = (
-				C98E885F1A9EB51C0046FCD4 /* Libraries */,
 				C98B06E61A8E66F60034097F /* Sangre */,
 				C98B06E51A8E66F60034097F /* Products */,
+				C98E885F1A9EB51C0046FCD4 /* Libraries */,
 			);
 			sourceTree = "<group>";
 		};
