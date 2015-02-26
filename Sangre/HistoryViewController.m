@@ -70,8 +70,16 @@
     return [[mBackend dateAtIndex:section] count];
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[mBackend dateAtIndex:section] title];
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *identifier = @"DateHeader";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+
+    UILabel* dateLabel = (UILabel*)[cell viewWithTag:1];
+    [dateLabel setText:[[mBackend dateAtIndex:section] title]];
+    return cell;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,7 +94,7 @@
     
     BackendEntry* row = [[mBackend dateAtIndex:indexPath.section] entryAtIndex:indexPath.row];
     [timeLabel setText:[DateUtils toTimeString:[row date]]];
-    [bgLabel setText:[row value]];
+    [bgLabel setText:[NSString stringWithFormat:@"%@ mg/dL", [row value]]];
     return cell;
 }
 

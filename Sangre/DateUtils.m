@@ -30,13 +30,13 @@
 
 + (NSString*)toTimeString:(NSDate*)date {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"HH:mm";
+    formatter.dateFormat = @"hh:mm aaa";
     return [formatter stringFromDate:date];
 }
 
 + (NSString*)toDateString:(NSDate*)date {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"dd-MMM";
+    formatter.dateFormat = @"MMMM dd";
     return [formatter stringFromDate:date];
 }
 

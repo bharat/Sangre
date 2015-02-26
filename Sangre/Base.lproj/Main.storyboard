@@ -21,6 +21,25 @@
                                 <rect key="frame" x="1" y="64" width="599" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateHeader" id="ovo-be-ZrJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="599" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ovo-be-ZrJ" id="r3V-IF-m28">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glJ-Yd-cIc">
+                                                    <rect key="frame" x="16" y="8" width="156" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="glJ-Yd-cIc" firstAttribute="leading" secondItem="r3V-IF-m28" secondAttribute="leadingMargin" id="mW2-PC-h82"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BloodGlucose" rowHeight="38" id="7hH-8L-ivc">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +47,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="141 mg/dL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfH-rW-0FZ">
-                                                    <rect key="frame" x="146" y="9" width="106" height="21"/>
+                                                    <rect key="frame" x="226" y="9" width="106" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="106" id="ytp-F1-RkL"/>
                                                     </constraints>
@@ -48,7 +67,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jfH-rW-0FZ" firstAttribute="top" secondItem="ub7-sf-H5u" secondAttribute="topMargin" constant="1" id="73a-IM-17y"/>
-                                                <constraint firstItem="jfH-rW-0FZ" firstAttribute="leading" secondItem="TAn-6t-HTT" secondAttribute="trailing" constant="20" id="MDv-DM-8ed"/>
+                                                <constraint firstItem="jfH-rW-0FZ" firstAttribute="leading" secondItem="TAn-6t-HTT" secondAttribute="trailing" constant="100" id="MDv-DM-8ed"/>
                                                 <constraint firstItem="TAn-6t-HTT" firstAttribute="leading" secondItem="ub7-sf-H5u" secondAttribute="leadingMargin" constant="21" id="mFk-aY-S1w"/>
                                                 <constraint firstItem="TAn-6t-HTT" firstAttribute="top" secondItem="ub7-sf-H5u" secondAttribute="topMargin" id="qdk-hB-F0o"/>
                                             </constraints>
@@ -76,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="-316"/>
+            <point key="canvasLocation" x="923" y="-318"/>
         </scene>
         <!--Add Entry-->
         <scene sceneID="Ft5-ta-PSl">
