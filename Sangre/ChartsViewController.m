@@ -9,40 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "ChartsViewController.h"
 
-@implementation ChartsViewController {
-    UIImageView* mChartImgView;
-    UIImage* mChartImg;
-}
+NSString* kChartURL = @"https://docs.google.com/spreadsheets/d/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/pubchart?oid=265302356&format=image";
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self startBeingBusy];
-    
-    // add image view to mainview
-    mChartImgView = [[UIImageView alloc] init];
-    [mChartImgView setContentMode:UIViewContentModeScaleToFill];
-    
-    NSString* chartURL = @"https://docs.google.com/spreadsheets/d/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/pubchart?oid=265302356&format=image";
-    
-    // append size of graph
-    CGSize size = self.view.frame.size;
-    NSString* dimensions = [NSString stringWithFormat:@"&chs=%dx%d", (int)size.width, (int)size.height];
-    chartURL = [chartURL stringByAppendingString:dimensions];
-    NSLog(@"%@", chartURL);
-          
+@implementation ChartsViewController
+
+- (void)loadImage:(NSString *)chartURL {
     // download the chart and set it in the imageView
     chartURL = [chartURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSData* chartImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:chartURL]];
-    mChartImg = [[UIImage alloc] initWithData:chartImageData];
+    UIImage* image = [[UIImage alloc] initWithData:chartImageData];
     [chartImageData release];
     
     // set the image view image to the appropriate size and image for the orientation
-    mChartImgView.image = mChartImg;
-    mChartImgView.frame = [self.view frame];
-    
-    // add to view
-    [self.view addSubview:mChartImgView];
-    self.view.autoresizesSubviews = YES;
-    [self stopBeingBusy];
+    self.imageView.image = image;
+    self.imageView.frame = CGRectInset(self.view.bounds, 4, 4);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadImage:kChartURL];
+}
+
+- (void)dealloc {
+    [_imageView release];
+    [super dealloc];
 }
 @end

@@ -10,5 +10,6 @@
 #include "BusyViewController.h"
 
 @interface ChartsViewController : BusyViewController
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 @end
 

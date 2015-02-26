@@ -149,9 +149,23 @@
                     <view key="view" contentMode="scaleToFill" id="dHZ-L9-59p">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Ki-Cg-gh4">
+                                <rect key="frame" x="8" y="68" width="584" height="479"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Ki-Cg-gh4" firstAttribute="top" secondItem="jZn-e1-yPi" secondAttribute="bottom" constant="4" id="4rM-1R-gkv"/>
+                            <constraint firstItem="5Ki-Cg-gh4" firstAttribute="leadingMargin" secondItem="dHZ-L9-59p" secondAttribute="leadingMargin" id="Ka6-o3-knm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Ki-Cg-gh4" secondAttribute="trailingMargin" id="s9U-Fh-A6Q"/>
+                            <constraint firstItem="XZC-oO-bVg" firstAttribute="top" secondItem="5Ki-Cg-gh4" secondAttribute="bottom" constant="4" id="v3E-FC-Lpi"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="Charts" id="wMT-sf-GLF"/>
+                    <connections>
+                        <outlet property="imageView" destination="5Ki-Cg-gh4" id="7Y4-qI-7UD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaW-X0-TvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
