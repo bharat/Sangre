@@ -27,7 +27,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ovo-be-ZrJ" id="r3V-IF-m28">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glJ-Yd-cIc">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="February 25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glJ-Yd-cIc">
                                                     <rect key="frame" x="16" y="8" width="156" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -55,7 +55,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAn-6t-HTT">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAn-6t-HTT">
                                                     <rect key="frame" x="29" y="8" width="97" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="97" id="wqm-Re-rtk"/>
@@ -88,14 +88,14 @@
                             <constraint firstItem="w9x-vK-NnA" firstAttribute="leadingMargin" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zHY-le-OfL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="View History" image="heart_monitor-40" id="mdm-ek-hO5"/>
+                    <tabBarItem key="tabBarItem" title="View History" image="History" id="mdm-ek-hO5"/>
                     <connections>
                         <outlet property="tableView" destination="w9x-vK-NnA" id="s9q-Ai-UI9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="-318"/>
+            <point key="canvasLocation" x="923" y="-319"/>
         </scene>
         <!--Add Entry-->
         <scene sceneID="Ft5-ta-PSl">
@@ -132,7 +132,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add Entry" image="diabetes-40" id="B0a-Td-yBw"/>
+                    <tabBarItem key="tabBarItem" title="Add Entry" image="DataEntry" id="B0a-Td-yBw"/>
                     <connections>
                         <outlet property="bgValue" destination="gsX-g7-iJv" id="q5I-C8-2vD"/>
                     </connections>
@@ -182,7 +182,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="diabetes-40" width="40" height="40"/>
-        <image name="heart_monitor-40" width="40" height="40"/>
+        <image name="DataEntry" width="32" height="32"/>
+        <image name="History" width="32" height="32"/>
     </resources>
 </document>
