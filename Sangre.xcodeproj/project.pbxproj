@@ -2557,7 +2557,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
@@ -2588,6 +2587,7 @@
 					"-all_load",
 					"-lxml2",
 				);
+				PROVISIONING_PROFILE = "0dbaa98a-ff3b-4cd9-aac1-b168d4f93ab9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2610,7 +2610,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2634,6 +2633,7 @@
 					"-all_load",
 					"-lxml2",
 				);
+				PROVISIONING_PROFILE = "0dbaa98a-ff3b-4cd9-aac1-b168d4f93ab9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2643,12 +2643,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
 				INFOPLIST_FILE = Sangre/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "07b1cd8b-0b05-4a24-aadb-b7d9169a0a03";
 			};
 			name = Debug;
 		};
@@ -2656,12 +2655,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bharat MEDIRATTA (892MGCYL8F)";
 				INFOPLIST_FILE = Sangre/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "07b1cd8b-0b05-4a24-aadb-b7d9169a0a03";
 			};
 			name = Release;
 		};
