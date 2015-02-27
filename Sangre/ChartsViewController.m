@@ -27,6 +27,7 @@ const NSString* kChartURL = @"https://docs.google.com/spreadsheets/d/1SCVZzclIEY
             self.imageView.image = image;
             self.imageView.frame = CGRectInset(self.view.bounds, 4, 4);
             [self stopBeingBusy];
+            [image release];
         });
     });
 }
