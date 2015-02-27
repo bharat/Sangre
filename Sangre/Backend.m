@@ -246,7 +246,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
      ];
 }
 
--(void) addBgValue:(NSString*)bgValue andThen:(void(^)(BOOL))callback {
+-(void) addBgValue:(NSInteger)bgValue andThen:(void(^)(BOOL))callback {
     NSDate* now = [DateUtils convertLocalTimezoneToSystemTimezone:[NSDate date]];
     
     GDataEntrySpreadsheetList *entry = [GDataEntrySpreadsheetList listEntry];
@@ -255,7 +255,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
     GDataSpreadsheetCustomElement *obj2 =
         [GDataSpreadsheetCustomElement elementWithName:@"type" stringValue:@"bg"];
     GDataSpreadsheetCustomElement *obj3 =
-        [GDataSpreadsheetCustomElement elementWithName:@"value" stringValue:bgValue];
+        [GDataSpreadsheetCustomElement elementWithName:@"value" stringValue:[@(bgValue) stringValue]];
     NSArray* array = [NSArray arrayWithObjects:obj1, obj2, obj3, nil];
     [entry setCustomElements:array];
 

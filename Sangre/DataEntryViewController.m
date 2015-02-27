@@ -35,9 +35,21 @@
 #pragma mark DataEntryViewController
 
 - (IBAction)addBgValue:(id)sender {
+    NSInteger value = [[[self bgValue] text] intValue];
+    if (value <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid entry"
+                                                        message:@"Blood glucose entries must be a value greater than zero."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+
     [self startBeingBusy];
     [self.view endEditing:YES];
-    [mBackend addBgValue:[[self bgValue] text]
+    [mBackend addBgValue:value
                  andThen:^(BOOL success){
                      [self stopBeingBusy];
                      [self switchToHistoryTab];
