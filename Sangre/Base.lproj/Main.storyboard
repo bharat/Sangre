@@ -128,6 +128,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="h6y-bC-f4e" appends="YES" id="Pc0-UW-ImG"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add Entry" image="DataEntry" id="B0a-Td-yBw"/>
                     <connections>
@@ -135,6 +139,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttx-bb-jNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="h6y-bC-f4e">
+                    <connections>
+                        <action selector="endEditing:" destination="fUH-hi-XS0" id="dT3-iJ-7Kl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1470" y="1200"/>
         </scene>

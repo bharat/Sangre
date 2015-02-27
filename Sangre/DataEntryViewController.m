@@ -23,6 +23,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
+
+    [[self bgValue] becomeFirstResponder];
 }
 
 #pragma mark NSObject
@@ -56,6 +58,11 @@
                  }
      ];
 }
+
+- (IBAction)endEditing:(id)sender {
+    [self.view endEditing:YES];
+}
+
 
 - (void) switchToHistoryTab {
     [self.tabBarController setSelectedIndex:0];
