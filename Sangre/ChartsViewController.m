@@ -32,6 +32,7 @@ const NSString* kChartURL = @"https://docs.google.com/spreadsheets/d/1SCVZzclIEY
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
     [self loadImage];
 }

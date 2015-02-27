@@ -80,6 +80,11 @@
         callback(success);
     }];
 }
+
+- (void)dealloc {
+    [mEntries dealloc];
+    [super dealloc];
+}
 @end
 
 
@@ -98,18 +103,27 @@
 -(void) add:(BackendEntry*)entry {
     NSString* title = [DateUtils toDateString:entry.date];
     if (![mDates valueForKey:title]) {
-        [mDates setValue:[[BackendDate alloc] initWithTitle:title] forKey:title];
+        BackendDate* date = [[BackendDate alloc] initWithTitle:title];
+        [mDates setValue:date forKey:title];
         [mDateOrder addObject:title];
+        [date release];
     }
     [[mDates valueForKey:title] add:entry];
 }
 
-- (id)objectAtIndex:(NSUInteger)index {
+- (id)dateAtIndex:(NSUInteger)index {
     return [mDates objectForKey:[mDateOrder objectAtIndex:index]];
 }
 
 - (NSInteger)count {
     return [mDateOrder count];
+}
+
+- (void)dealloc {
+    [mDates removeAllObjects];
+    [mDates dealloc];
+    [mDateOrder dealloc];
+    [super dealloc];
 }
 @end
 
@@ -167,7 +181,6 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
                         [[Backend singleton] setAuthentication:auth];
                     }
                 }];
-    [viewController autorelease];
     return viewController;
 }
 
@@ -201,15 +214,15 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 #pragma mark Backend
 
 - (BackendDate*) dateAtIndex:(NSInteger)index {
-    return [mDateArray objectAtIndex:index];
+    return [mDateArray dateAtIndex:index];
 }
 
 - (BackendEntry*) entryAt:(NSInteger)entryIndex forDateAtIndex:(NSInteger)dateIndex {
-    return [[mDateArray objectAtIndex:dateIndex] objectAtIndex:entryIndex];
+    return [[mDateArray dateAtIndex:dateIndex] objectAtIndex:entryIndex];
 }
 
 - (NSString*) titleForDateAtIndex:(NSInteger)index {
-    return [[mDateArray objectAtIndex:index] title];
+    return [[mDateArray dateAtIndex:index] title];
 }
 
 - (NSInteger) dateCount {
@@ -227,17 +240,19 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
                 [[UIAlertView alloc] initWithTitle:@"feed error"
                                            message:[error debugDescription]
                                           delegate:self
-                                 cancelButtonTitle:@"cancel"
-                                 otherButtonTitles:@"ok", nil];
+                                 cancelButtonTitle:@"ok"
+                                 otherButtonTitles:nil];
             } else {
+                [mDateArray dealloc];
                 mDateArray = [[BackendDateArray alloc] init];
                 for (GDataEntrySpreadsheetList* row in [feed entries]) {
                     NSArray* cols = [row customElements];
                     BackendEntry* entry = [BackendEntry alloc];
-                    [entry initWithDate:[DateUtils googleDocsStringToDate:[[cols objectAtIndex:0] stringValue]]
-                               andValue:[[cols objectAtIndex:2] stringValue]
-                                  andId:row];
+                    entry = [entry initWithDate:[DateUtils googleDocsStringToDate:[[cols objectAtIndex:0] stringValue]]
+                                       andValue:[[cols objectAtIndex:2] stringValue]
+                                          andId:row];
                     [mDateArray add:entry];
+                    [entry release];
                 }
                 [self setFeed:(GDataFeedSpreadsheet*)feed];
             }

@@ -35,6 +35,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:nil animated:animated];
 }
 
@@ -78,7 +79,7 @@
     static NSString *identifier = @"BloodGlucose";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     
     UILabel* timeLabel = (UILabel*)[cell viewWithTag:1];

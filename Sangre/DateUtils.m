@@ -23,26 +23,46 @@
 }
 
 + (NSDate *)googleDocsStringToDate:(NSString *)timestampString {
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
+    static NSDateFormatter* formatter;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^(void){
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
+    });
+
     return [formatter dateFromString:timestampString];
 }
 
 + (NSString*)toTimeString:(NSDate*)date {
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"hh:mm aaa";
+    static NSDateFormatter* formatter;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^(void){
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"hh:mm aaa";
+    });
+
     return [formatter stringFromDate:date];
 }
 
 + (NSString*)toDateString:(NSDate*)date {
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMMM dd";
+    static NSDateFormatter* formatter;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^(void){
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"MMMM dd";
+    });
+
     return [formatter stringFromDate:date];
 }
 
 + (NSString*)toGoogleDocsString:(NSDate*)date {
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
+    static NSDateFormatter* formatter;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^(void){
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"MM/dd/yyyy HH:mm:ss";
+    });
+
     return [formatter stringFromDate:date];
 }
 @end
