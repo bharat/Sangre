@@ -38,9 +38,9 @@
 
 - (IBAction)addBgValue:(id)sender {
     NSInteger value = [[[self bgValue] text] intValue];
-    if (value <= 0) {
+    if (value < 40 || value > 600) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid entry"
-                                                        message:@"Blood glucose entries must be a value greater than zero."
+                                                        message:@"Blood glucose entries must be between 40 and 600"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -51,6 +51,7 @@
 
     [self startBeingBusy];
     [self.view endEditing:YES];
+    [[self bgValue] setText:@""];
     [mBackend addBgValue:value
                  andThen:^(BOOL success){
                      [self stopBeingBusy];
