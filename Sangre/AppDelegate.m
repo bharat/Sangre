@@ -9,25 +9,47 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
 
+- (void)handleRemoteNotification:(NSDictionary*)notification {
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!"
+                                                        message:[[notification valueForKey:@"aps"] valueForKey:@"alert"]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+
+    UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
+    UITabBarController* main = [[nav viewControllers] objectAtIndex:0];
+    [main setSelectedIndex:1]; // DataEntryViewController
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-    [application registerForRemoteNotifications];
+
+    // open app from a notification
+    NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notification) {
+        [self handleRemoteNotification:notification];
+    }
 
     // Override point for customization after application launch.
     return YES;
 }
 
+#ifndef TARGET_IPHONE_SIMULATOR
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     [application registerForRemoteNotifications];
 }
+#endif
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"Device token: %@", [deviceToken description]);
@@ -38,9 +60,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
-    UITabBarController* main = [[nav viewControllers] objectAtIndex:0];
-    [main setSelectedIndex:1]; // DataEntryViewController
+    [self handleRemoteNotification:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
