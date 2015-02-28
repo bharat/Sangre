@@ -15,7 +15,8 @@
 
 
 - (void)handleRemoteNotification:(NSDictionary*)notification {
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+    UIApplication* app = [UIApplication sharedApplication];
+    if ([app applicationState] == UIApplicationStateActive) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert!"
                                                         message:[[notification valueForKey:@"aps"] valueForKey:@"alert"]
                                                        delegate:nil
@@ -28,6 +29,7 @@
     UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
     UITabBarController* main = [[nav viewControllers] objectAtIndex:0];
     [main setSelectedIndex:1]; // DataEntryViewController
+    [app setApplicationIconBadgeNumber:0];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
