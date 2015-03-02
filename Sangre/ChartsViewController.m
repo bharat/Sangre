@@ -57,7 +57,7 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
     CGSize frame = self.scrollView.frame.size;
     self.scrollView.contentSize = CGSizeMake(frame.width * self.pageImageURLs.count, frame.height);
 
-    for (UIView* view in [self.scrollView subviews]) {
+    for (UIView* view in self.pageViews) {
         [view removeFromSuperview];
     }
     for (NSInteger i = 0; i < self.pageImageURLs.count; ++i) {
@@ -92,7 +92,7 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIImageView *view = [[UIImageView alloc] initWithImage:image];
                 view.contentMode = UIViewContentModeScaleAspectFit;
-                view.frame = CGRectOffset(CGRectInset(targetFrame, 16, 0), -8, 0);
+                view.frame = CGRectOffset(CGRectInset(targetFrame, 16, 16), -8, 8);
 
                 [self.scrollView addSubview:view];
                 [self.pageViews replaceObjectAtIndex:page withObject:view];
