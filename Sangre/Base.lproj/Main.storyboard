@@ -159,26 +159,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Ki-Cg-gh4">
-                                <rect key="frame" x="8" y="68" width="584" height="479"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omv-OA-whp">
+                                <rect key="frame" x="0.0" y="64" width="600" height="449"/>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="250"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="648"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="TZU-vG-1vc" id="SMz-O1-IvB"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="WKu-UY-aWB">
+                                <rect key="frame" x="0.0" y="514" width="600" height="37"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="314" width="600" height="37"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="714" width="400" height="37"/>
+                                </variation>
+                                <connections>
+                                    <action selector="pageDidScroll:" destination="TZU-vG-1vc" eventType="valueChanged" id="9tB-Nk-DFy"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5Ki-Cg-gh4" firstAttribute="top" secondItem="jZn-e1-yPi" secondAttribute="bottom" constant="4" id="4rM-1R-gkv"/>
-                            <constraint firstItem="5Ki-Cg-gh4" firstAttribute="leadingMargin" secondItem="dHZ-L9-59p" secondAttribute="leadingMargin" id="Ka6-o3-knm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Ki-Cg-gh4" secondAttribute="trailingMargin" id="s9U-Fh-A6Q"/>
-                            <constraint firstItem="XZC-oO-bVg" firstAttribute="top" secondItem="5Ki-Cg-gh4" secondAttribute="bottom" constant="4" id="v3E-FC-Lpi"/>
+                            <constraint firstAttribute="trailing" secondItem="Omv-OA-whp" secondAttribute="trailing" id="06K-2e-wMe"/>
+                            <constraint firstItem="WKu-UY-aWB" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leading" id="92F-4y-dlv"/>
+                            <constraint firstItem="Omv-OA-whp" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leading" id="BgQ-D2-xtX"/>
+                            <constraint firstAttribute="trailing" secondItem="WKu-UY-aWB" secondAttribute="trailing" id="M0W-aZ-9gT"/>
+                            <constraint firstItem="WKu-UY-aWB" firstAttribute="top" secondItem="Omv-OA-whp" secondAttribute="bottom" constant="1" id="YiK-nu-NA5"/>
+                            <constraint firstItem="Omv-OA-whp" firstAttribute="top" secondItem="jZn-e1-yPi" secondAttribute="bottom" id="uL4-c9-jET"/>
+                            <constraint firstItem="XZC-oO-bVg" firstAttribute="top" secondItem="WKu-UY-aWB" secondAttribute="bottom" id="uiD-ba-8cu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="Charts" id="wMT-sf-GLF"/>
                     <connections>
-                        <outlet property="imageView" destination="5Ki-Cg-gh4" id="7Y4-qI-7UD"/>
+                        <outlet property="pageControl" destination="WKu-UY-aWB" id="qMb-vM-1ue"/>
+                        <outlet property="scrollView" destination="Omv-OA-whp" id="L3D-fM-fbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaW-X0-TvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-708" y="1200"/>
+            <point key="canvasLocation" x="-691" y="1220"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i7O-Q7-Tp1">

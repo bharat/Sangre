@@ -14,6 +14,12 @@
 @implementation AppDelegate
 
 
+- (void)switchToDataEntryView {
+    UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
+    UITabBarController* main = [[nav viewControllers] objectAtIndex:0];
+    [main setSelectedIndex:1];
+}
+
 - (void)handleRemoteNotification:(NSDictionary*)notification {
     UIApplication* app = [UIApplication sharedApplication];
     if ([app applicationState] == UIApplicationStateActive) {
@@ -26,22 +32,24 @@
         [alert release];
     }
 
-    UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
-    UITabBarController* main = [[nav viewControllers] objectAtIndex:0];
-    [main setSelectedIndex:1]; // DataEntryViewController
-    [app setApplicationIconBadgeNumber:0];
+    [self switchToDataEntryView]; // DataEntryViewController
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
-    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    UIUserNotificationType types =
+        UIUserNotificationTypeSound | UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *notificationSettings =
+        [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 
     // open app from a notification
     NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (notification) {
-        [self handleRemoteNotification:notification];
+        [self switchToDataEntryView];
     }
+
+    // Either way, let's consider our badge resolved
+    [application setApplicationIconBadgeNumber:0];
 
     // Override point for customization after application launch.
     return YES;
