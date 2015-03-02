@@ -138,6 +138,7 @@ NSString *kKeychainItemName = @"com.menalto.Sangre";
 NSString *kMyClientID = @"336095338870-fqh5c3k8ug6772lcms8rmo07b0kqieh5.apps.googleusercontent.com";
 NSString *kMyClientSecret = @"Pn2jFjL39S94ko0diFdb4z8_";
 NSString *scope = @"https://spreadsheets.google.com/feeds";
+NSString* kEventsFeedUrl = @"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/ox8svy8/private/full";
 
 + (id) singleton {
     static Backend *singleton = nil;
@@ -231,8 +232,7 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 
 -(void) loadEvents:(void(^)(BOOL))callback {
     GDataServiceGoogleSpreadsheet *service = [self spreadsheetService];
-    NSURL *eventsFeedURL =
-      [NSURL URLWithString:@"https://spreadsheets.google.com/feeds/list/1SCVZzclIEYrSohgpmg5oy4WXWW0P8-3eZnOjRL_dyWc/ox8svy8/private/full"];
+    NSURL *eventsFeedURL = [NSURL URLWithString:kEventsFeedUrl];
     
     [service fetchFeedWithURL:eventsFeedURL
         completionHandler:^(GDataServiceTicket *ticket, GDataFeedBase *feed, NSError *error) {
@@ -263,6 +263,21 @@ NSString *scope = @"https://spreadsheets.google.com/feeds";
 
 -(void) addBgValue:(NSInteger)bgValue andThen:(void(^)(BOOL))callback {
     NSDate* now = [DateUtils convertLocalTimezoneToSystemTimezone:[NSDate date]];
+
+    // It's possible we got here before loading the events. This can happen if the
+    // user starts on the DataEntry view after getting a notification. In that case,
+    // load the events and trigger a callback back to this function to try again.
+    // Note: this may result in an infinite loop if we can't load the events.
+    if (!mFeed) {
+        [self loadEvents:^(BOOL success) {
+            if (success) {
+                [self addBgValue:bgValue andThen:^(BOOL success) {
+                    callback(success);
+                }];
+            }
+        }];
+        return;
+    }
     
     GDataEntrySpreadsheetList *entry = [GDataEntrySpreadsheetList listEntry];
     GDataSpreadsheetCustomElement *obj1 =
