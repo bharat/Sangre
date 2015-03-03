@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "BusyViewController.h"
 
-@interface ChartsViewController : BusyViewController <UIScrollViewDelegate>
+@interface ChartsViewController : UIViewController <UIScrollViewDelegate>
 - (IBAction)pageDidScroll:(id)sender;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;

@@ -9,9 +9,11 @@
 #import "HistoryViewController.h"
 #import "Backend.h"
 #import "DateUtils.h"
+#import "Busy.h"
 
 @implementation HistoryViewController {
     Backend* mBackend;
+    Busy* mBusy;
 }
 
 #pragma mark UIViewController
@@ -19,16 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [Backend singleton];
+    mBusy = [[Busy alloc] init:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self startBeingBusy];
+    [mBusy start];
     [mBackend loadEvents:^(BOOL success) {
         [[self tableView] reloadData];
         [self scrollToBottom];
-        [self stopBeingBusy];
+        [mBusy stop];
     }];
     
     [self.navigationController.navigationBar.topItem setTitle:[self.tabBarItem title]];
@@ -48,7 +51,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self startBeingBusy];
+        [mBusy start:self.view];
         [[mBackend dateAtIndex:indexPath.section] deleteAtIndex:indexPath.row andThen:^(BOOL success) {
             if (success) {
                 // Once we modify the data our existing feed is invalid so we need to reload all the data.
@@ -58,7 +61,7 @@
                     [[self tableView] reloadData];
                 }];
             }
-            [self stopBeingBusy];
+            [mBusy stop];
         }];
     }
 }
