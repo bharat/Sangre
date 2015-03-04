@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [Backend singleton];
-    mBusy = [[Busy alloc] init:self.view];
+    mBusy = [[Busy alloc] init:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -51,7 +51,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [mBusy start:self.view];
+        [mBusy start];
         [[mBackend dateAtIndex:indexPath.section] deleteAtIndex:indexPath.row andThen:^(BOOL success) {
             if (success) {
                 // Once we modify the data our existing feed is invalid so we need to reload all the data.

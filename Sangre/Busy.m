@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #include "Busy.h"
 
 
@@ -13,6 +14,7 @@
     UIView* mOverlay;
     UIActivityIndicatorView *mSpinner;
     UIView* mParentView;
+    BusyViewStyle mStyle;
 }
 
 - (id) init:(UIView*)parentView {
@@ -23,17 +25,42 @@
     mSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [mOverlay addSubview:mSpinner];
     [mParentView addSubview:mOverlay];
+    mStyle = BusyViewStyleRegular;
+    return self;
+}
+
+- (id) init:(UIView *)parentView withStyle:(BusyViewStyle)style {
+    self = [self init:parentView];
+    mStyle = style;
+    
+    if (mStyle == BusyViewStyleSmallAndRounded) {
+        mOverlay.layer.cornerRadius = 5;
+        mOverlay.layer.masksToBounds = YES;
+    }
     return self;
 }
 
 - (void) start {
-    mOverlay.frame = mParentView.frame;
+    mOverlay.frame = mParentView.bounds;
+
+    [mParentView setBackgroundColor:[UIColor redColor]];
+    [mOverlay setBackgroundColor:[UIColor greenColor]];
+    
+    mOverlay.frame = CGRectInset(mOverlay.frame, 20, 20);
+    
+    /*
+    if (mStyle == BusyViewStyleSmallAndRounded) {
+        mOverlay.frame = mParentView.frame;
+        mOverlay.center = mParentView.center;
+    }
+     */
+    
     mSpinner.center = mOverlay.center;
     [mSpinner startAnimating];
 }
 
 - (void) stop {
-    mOverlay.frame = CGRectMake(0, 0, 0, 0);
-    [mSpinner stopAnimating];
+    //mOverlay.frame = CGRectMake(0, 0, 0, 0);
+    //[mSpinner stopAnimating];
 }
 @end

@@ -159,20 +159,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omv-OA-whp">
-                                <rect key="frame" x="0.0" y="64" width="600" height="449"/>
-                                <variation key="heightClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="250"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="648"/>
-                                </variation>
-                                <connections>
-                                    <outlet property="delegate" destination="TZU-vG-1vc" id="SMz-O1-IvB"/>
-                                </connections>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="WKu-UY-aWB">
-                                <rect key="frame" x="0.0" y="514" width="600" height="37"/>
+                            <pageControl opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="WKu-UY-aWB">
+                                <rect key="frame" x="116" y="514" width="368" height="37"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="heightClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="314" width="600" height="37"/>
@@ -184,16 +172,28 @@
                                     <action selector="pageDidScroll:" destination="TZU-vG-1vc" eventType="valueChanged" id="9tB-Nk-DFy"/>
                                 </connections>
                             </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omv-OA-whp">
+                                <rect key="frame" x="0.0" y="64" width="600" height="450"/>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="250"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="648"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="TZU-vG-1vc" id="SMz-O1-IvB"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Omv-OA-whp" secondAttribute="trailing" id="06K-2e-wMe"/>
-                            <constraint firstItem="WKu-UY-aWB" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leading" id="92F-4y-dlv"/>
-                            <constraint firstItem="Omv-OA-whp" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leading" id="BgQ-D2-xtX"/>
-                            <constraint firstAttribute="trailing" secondItem="WKu-UY-aWB" secondAttribute="trailing" id="M0W-aZ-9gT"/>
-                            <constraint firstItem="WKu-UY-aWB" firstAttribute="top" secondItem="Omv-OA-whp" secondAttribute="bottom" constant="1" id="YiK-nu-NA5"/>
-                            <constraint firstItem="Omv-OA-whp" firstAttribute="top" secondItem="jZn-e1-yPi" secondAttribute="bottom" id="uL4-c9-jET"/>
-                            <constraint firstItem="XZC-oO-bVg" firstAttribute="top" secondItem="WKu-UY-aWB" secondAttribute="bottom" id="uiD-ba-8cu"/>
+                            <constraint firstItem="Omv-OA-whp" firstAttribute="bottom" secondItem="WKu-UY-aWB" secondAttribute="top" id="16b-r1-HUT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WKu-UY-aWB" secondAttribute="trailing" constant="100" id="9mx-FJ-HZs"/>
+                            <constraint firstItem="WKu-UY-aWB" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leadingMargin" constant="100" id="G0R-1e-Ieg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Omv-OA-whp" secondAttribute="trailing" constant="-16" id="Kqi-aQ-c0M"/>
+                            <constraint firstItem="XZC-oO-bVg" firstAttribute="top" secondItem="WKu-UY-aWB" secondAttribute="bottom" id="MrL-5T-PpX"/>
+                            <constraint firstItem="Omv-OA-whp" firstAttribute="leading" secondItem="dHZ-L9-59p" secondAttribute="leadingMargin" constant="-16" id="Wff-1e-66u"/>
+                            <constraint firstItem="Omv-OA-whp" firstAttribute="top" secondItem="jZn-e1-yPi" secondAttribute="bottom" id="bk0-21-2Mg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="Charts" id="wMT-sf-GLF"/>
@@ -204,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaW-X0-TvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-691" y="1220"/>
+            <point key="canvasLocation" x="-691" y="1302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i7O-Q7-Tp1">

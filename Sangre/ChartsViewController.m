@@ -33,10 +33,10 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
     mURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     mParent = parent;
     mView = [[UIImageView alloc] init];
-    mView.contentMode = UIViewContentModeScaleAspectFit;
+    //mView.contentMode = UIViewContentModeScaleAspectFit;
     [mParent addSubview:mView];
 
-    mBusy = [[Busy alloc] init:mView];
+    mBusy = [[Busy alloc] init:mView withStyle:BusyViewStyleSmallAndRounded];
     return self;
 }
 
@@ -46,6 +46,10 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
 }
 
 - (void)load {
+    if (mView.image) {
+        return;
+    }
+    
     [mBusy start];
 
     // Load the image in the background
@@ -56,6 +60,7 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
         // But switch to the main thread to add the image subview
         dispatch_async(dispatch_get_main_queue(), ^{
             [mView setImage:image];
+            [mBusy stop];
         });
     });
 }
@@ -97,12 +102,15 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self resetSizes];
+    [UIView animateWithDuration:0.25 animations:^{
+        [self resetSizes];
+    }];
     [self loadVisiblePages];
 }
 
 - (void)resetSizes {
     CGSize size = self.scrollView.frame.size;
+    CGSize x = self.scrollView.bounds.size;
     self.scrollView.contentSize = CGSizeMake(size.width * [mPages count], size.height);
 
     for (int i = 0; i < mPages.count; i++) {
