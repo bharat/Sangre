@@ -33,10 +33,10 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
     mURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     mParent = parent;
     mView = [[UIImageView alloc] init];
-    //mView.contentMode = UIViewContentModeScaleAspectFit;
+    mView.contentMode = UIViewContentModeScaleAspectFit;
     [mParent addSubview:mView];
 
-    mBusy = [[Busy alloc] init:mView withStyle:BusyViewStyleSmallAndRounded];
+    //mBusy = [[Busy alloc] init:mView withStyle:BusyViewStyleSmallAndRounded];
     return self;
 }
 
@@ -50,7 +50,7 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
         return;
     }
     
-    [mBusy start];
+    //[mBusy start];
 
     // Load the image in the background
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
@@ -60,7 +60,7 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
         // But switch to the main thread to add the image subview
         dispatch_async(dispatch_get_main_queue(), ^{
             [mView setImage:image];
-            [mBusy stop];
+            //[mBusy stop];
         });
     });
 }
@@ -109,10 +109,13 @@ const NSString* kHourlyAverageUrl = @"https://docs.google.com/spreadsheets/d/1SC
 }
 
 - (void)resetSizes {
+    
+    // this is where the shit goes off the rails
+    xxx
+    CGSize old = self.scrollView.contentSize;
     CGSize size = self.scrollView.frame.size;
-    CGSize x = self.scrollView.bounds.size;
     self.scrollView.contentSize = CGSizeMake(size.width * [mPages count], size.height);
-
+    
     for (int i = 0; i < mPages.count; i++) {
         Page* page = (Page*)[mPages objectAtIndex:i];
         CGRect targetFrame = self.scrollView.bounds;

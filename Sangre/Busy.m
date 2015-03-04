@@ -43,9 +43,6 @@
 - (void) start {
     mOverlay.frame = mParentView.bounds;
 
-    [mParentView setBackgroundColor:[UIColor redColor]];
-    [mOverlay setBackgroundColor:[UIColor greenColor]];
-    
     mOverlay.frame = CGRectInset(mOverlay.frame, 20, 20);
     
     /*
