@@ -44,12 +44,10 @@
 
     // open app from a notification
     NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (notification) {
+    if (notification || [application applicationIconBadgeNumber] > 0) {
         [self switchToDataEntryView];
+        [application setApplicationIconBadgeNumber:0];
     }
-
-    // Either way, let's consider our badge resolved
-    [application setApplicationIconBadgeNumber:0];
 
     // Override point for customization after application launch.
     return YES;
@@ -85,6 +83,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    if ([application applicationIconBadgeNumber] > 0) {
+        [self switchToDataEntryView];
+        [application setApplicationIconBadgeNumber:0];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
