@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "BusyViewController.h"
+#import "BusyViewController.h"
 
 @interface ChartsViewController : BusyViewController <UIScrollViewDelegate>
 - (IBAction)pageDidScroll:(id)sender;
