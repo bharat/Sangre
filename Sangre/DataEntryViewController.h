@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #include "Backend.h"
+#include "BusyViewController.h"
 
-@interface DataEntryViewController : UIViewController
+@interface DataEntryViewController : BusyViewController
 - (IBAction)addBgValue:(id)sender;
 - (IBAction)endEditing:(id)sender;
 

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Busy : NSObject
-- (id) init:(UIView*)parentView;
-- (void) start;
-- (void) stop;
+@interface BusyViewController : UIViewController
+- (void) startBeingBusy;
+- (void) stopBeingBusy;
 @end
 

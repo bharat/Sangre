@@ -8,11 +8,9 @@
 
 #import "DataEntryViewController.h"
 #import "Backend.h"
-#import "Busy.h"
 
 @implementation DataEntryViewController {
     Backend* mBackend;
-    Busy* mFormBusy;
 }
 
 #pragma mark UIViewController
@@ -20,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mBackend = [Backend singleton];
-    mFormBusy = [[Busy alloc] init:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,12 +49,12 @@
         return;
     }
 
-    [mFormBusy start];
+    [self startBeingBusy];
     [self.view endEditing:YES];
     [[self bgValue] setText:@""];
     [mBackend addBgValue:value
                  andThen:^(BOOL success){
-                     [mFormBusy stop];
+                     [self stopBeingBusy];
                      [self switchToHistoryTab];
                  }
      ];

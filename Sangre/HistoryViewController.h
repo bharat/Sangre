@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #include "Backend.h"
+#include "BusyViewController.h"
 
-@interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface HistoryViewController : BusyViewController <UITableViewDelegate, UITableViewDataSource>
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @end
 
