@@ -46,7 +46,6 @@
     NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (notification || [application applicationIconBadgeNumber] > 0) {
         [self switchToDataEntryView];
-        [application setApplicationIconBadgeNumber:0];
     }
 
     // Override point for customization after application launch.
@@ -85,7 +84,6 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if ([application applicationIconBadgeNumber] > 0) {
         [self switchToDataEntryView];
-        [application setApplicationIconBadgeNumber:0];
     }
 }
 

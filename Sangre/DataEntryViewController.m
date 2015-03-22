@@ -55,6 +55,7 @@
     [mBackend addBgValue:value
                  andThen:^(BOOL success){
                      [self stopBeingBusy];
+                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
                      [self switchToHistoryTab];
                  }
      ];
