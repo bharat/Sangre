@@ -31,7 +31,7 @@
 - (void) stopBeingBusy {
     if (mActivityOverlay) {
         [mActivityOverlay removeFromSuperview];
-        [mActivityOverlay dealloc];
+//        [mActivityOverlay dealloc];
         mActivityOverlay = nil;
     }
 }
