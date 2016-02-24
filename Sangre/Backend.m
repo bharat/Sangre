@@ -245,7 +245,10 @@ NSString* kEventsFeedUrl = @"https://spreadsheets.google.com/feeds/list/1SCVZzcl
             } else {
                 [mDateArray dealloc];
                 mDateArray = [[BackendDateArray alloc] init];
-                for (GDataEntrySpreadsheetList* row in [feed entries]) {
+                NSArray *rows = [feed entries];
+                NSInteger count = [rows count];
+                NSArray *slice = [[feed entries] subarrayWithRange:(NSRange){count-500, 500}];
+                for (GDataEntrySpreadsheetList* row in slice) {
                     NSArray* cols = [row customElements];
                     BackendEntry* entry = [BackendEntry alloc];
                     entry = [entry initWithDate:[DateUtils googleDocsStringToDate:[[cols objectAtIndex:0] stringValue]]

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F8F301A1BBC946000750773 /* SessionFetcher in Resources */ = {isa = PBXBuildFile; fileRef = 4F8F30191BBC946000750773 /* SessionFetcher */; settings = {ASSET_TAGS = (); }; };
+		4F8F301A1BBC946000750773 /* SessionFetcher in Resources */ = {isa = PBXBuildFile; fileRef = 4F8F30191BBC946000750773 /* SessionFetcher */; };
 		C95CA34A1A92A48700921699 /* BusyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3491A92A48700921699 /* BusyViewController.m */; };
 		C95CA3531A92BAC000921699 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CA3521A92BAC000921699 /* MainTabBarController.m */; };
 		C9718E9A1A93FCFD00DC527C /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C9718E991A93FCFD00DC527C /* DateUtils.m */; };
@@ -1272,7 +1272,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1319,7 +1318,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
